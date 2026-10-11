@@ -379,6 +379,7 @@ export function QuantitiesSection({
                 const bought = it.packages_required ?? null;
                 const leftover =
                   size && bought != null ? bought * size - it.required_amount : null;
+                const ingredientId = it.ingredient_id;
                 return (
                   <tr key={i} className="hover:bg-raised">
                     <Td className="text-ink font-medium">
@@ -409,6 +410,18 @@ export function QuantitiesSection({
                     </Td>
                     <Td className="text-right tnum text-ink">
                       {it.total_price != null ? money(it.total_price) : "—"}
+                    </Td>
+
+                    <Td className="text-right">
+                      {onCompare && ingredientId && (
+                        <button
+                          type="button"
+                          onClick={() => onCompare(ingredientId)}
+                          className="text-[12px] font-medium text-accent hover:underline whitespace-nowrap"
+                        >
+                          {it.total_price == null ? "Find price" : "Options"}
+                        </button>
+                      )}
                     </Td>
                   </tr>
                 );
