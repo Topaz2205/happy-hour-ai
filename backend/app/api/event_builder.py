@@ -1,12 +1,13 @@
 import json
 from typing import Any, Literal
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
+from app.services.ai_rate_limit import enforce_ai_rate_limit
 from app.db.session import get_db
 from app.models import Cocktail
 from app.services.llm import Message, OpenAICompatProvider, PRESETS
@@ -69,8 +70,11 @@ def extract_json(text: str) -> dict:
 @router.post("/advice")
 async def event_builder_advice(
     body: BuilderRequest,
+    request: Request,
     db: AsyncSession = Depends(get_db),
 ):
+    enforce_ai_rate_limit(request)
+
     provider_name = settings.LLM_PROVIDER
 
     if provider_name == "anthropic":

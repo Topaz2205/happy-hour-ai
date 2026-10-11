@@ -8,13 +8,14 @@ Claude's job: understand intent, pick cocktails, set allocations, interpret resu
 import json
 import uuid
 from typing import Any
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 from sqlalchemy.orm import selectinload
 
 from app.core.config import settings
+from app.services.ai_rate_limit import enforce_ai_rate_limit
 from app.services.llm import (
     build_provider, describe_config, LLMError, Message, ToolCall,
 )
@@ -828,7 +829,11 @@ def trim_history(messages: list[Message]) -> list[Message]:
 
 
 @router.post("/chat")
-async def agent_chat(body: AgentChatRequest, db: AsyncSession = Depends(get_db)):
+async def agent_chat(
+    body: AgentChatRequest,
+    request: Request,
+    db: AsyncSession = Depends(get_db),
+):
     """
     Agentic chat. The model orchestrates; the Python engine does all the maths.
 
@@ -836,6 +841,8 @@ async def agent_chat(body: AgentChatRequest, db: AsyncSession = Depends(get_db))
     affect any number produced here: every quantity and price still comes from
     app/engine/calculator.py through the tools below.
     """
+    enforce_ai_rate_limit(request)
+
     problem = describe_config(
         settings.LLM_PROVIDER, settings.resolved_llm_key, settings.resolved_llm_model
     )
@@ -866,7 +873,7 @@ async def agent_chat(body: AgentChatRequest, db: AsyncSession = Depends(get_db))
     messages = [Message(role=m.role, content=m.content) for m in body.messages]
     system = await build_system_prompt(event, db, body.current_tab)
 
-    MAX_ITERATIONS = 10
+    MAX_ITERATIONS = 4
     final_text = ""
     iteration = 0
 
