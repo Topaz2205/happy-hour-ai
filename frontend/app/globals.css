@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+/*
+  Happy Hour AI — design tokens.
+
+  One accent, used sparingly. A burnt orange that reads as amber spirit rather
+  than as a notification colour, on a warm neutral that keeps long tables and
+  dense numbers calm. Semantic colours (good/warn/bad) are deliberately NOT the
+  accent, so "this is a button" and "this is over budget" never look alike.
+*/
+@theme {
+  --color-canvas:      #FAFAF9;
+  --color-surface:     #FFFFFF;
+  --color-sunk:        #F5F5F4;
+  --color-raised:      #FCFCFB;
+
+  --color-ink:         #1C1917;
+  --color-ink-2:       #57534E;
+  --color-ink-3:       #8C8580;
+  --color-ink-4:       #B5AFA9;
+
+  --color-line:        #E9E6E3;
+  --color-line-2:      #D6D1CC;
+
+  --color-accent:      #C2410C;
+  --color-accent-hi:   #9A3412;
+  --color-accent-soft: #FEF3EC;
+  --color-accent-line: #F6D8C4;
+
+  --color-good:        #15803D;
+  --color-good-soft:   #F0FDF4;
+  --color-warn:        #B45309;
+  --color-warn-soft:   #FFFBEB;
+  --color-bad:         #B91C1C;
+  --color-bad-soft:    #FEF2F2;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, "Noto Sans Hebrew", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  /*
+    An elevation scale, not ad-hoc shadows. Premium reads as restraint: three
+    steps, each barely visible on its own, applied consistently. Two of them
+    carry a hairline top highlight, which is what separates a card that looks
+    printed on the page from one that looks placed on it.
+  */
+  --shadow-xs: 0 1px 2px rgba(28,25,23,.04);
+  --shadow-sm: 0 1px 2px rgba(28,25,23,.05), 0 1px 3px rgba(28,25,23,.04);
+  --shadow-md: 0 2px 4px rgba(28,25,23,.04), 0 8px 20px -6px rgba(28,25,23,.10);
+  --shadow-hero: 0 1px 2px rgba(28,25,23,.05), 0 12px 32px -12px rgba(194,65,12,.14);
+
+  --radius-card: 12px;
+  --radius-lg:   16px;
+}
+
+/*
+  The hero input is the one element allowed a gradient, and only a whisper of
+  one — a warm rise from the accent's palest tint. Anywhere else it would read
+  as decoration; here it marks the thing the whole page exists for.
+*/
+.hh-hero-surface {
+  background:
+    linear-gradient(180deg, #FFFDFC 0%, var(--color-surface) 42%),
+    var(--color-surface);
+}
+
+/* A card that responds to the cursor without moving the page around it. */
+.hh-interactive {
+  transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.hh-interactive:hover {
+  border-color: var(--color-line-2);
+  box-shadow: var(--shadow-sm);
+}
+
+html, body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Digits that sit in columns must line up. */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Scrollbars: present but quiet. */
+* { scrollbar-width: thin; scrollbar-color: var(--color-line-2) transparent; }
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--color-line-2); border-radius: 99px;
+  border: 3px solid var(--color-canvas);
+}
+*::-webkit-scrollbar-track { background: transparent; }
+
+/*
+  The default focus ring, in @layer base.
+
+  The layer is the whole point, and it took a browser to prove it: this rule
+  was unlayered, and an unlayered rule beats every rule in every layer
+  regardless of specificity. So `focus-visible:outline-none` on the hero
+  textarea — a Tailwind utility, and therefore in @layer utilities — lost to it,
+  and the input drew its own ring inside the card that was already showing
+  focus around it. Two rings for one focus reads as an error state.
+
+  Specificity was never the problem; I tried :where() first and it changed
+  nothing. Inside @layer base, any utility can now switch this off.
+*/
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* The agent's active step. A slow pulse reads as "working", not as an alert. */
+@keyframes hh-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .45; transform: scale(.86); }
+}
+.hh-pulse { animation: hh-pulse 1.6s ease-in-out infinite; }
+
+@keyframes hh-rise {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+.hh-rise { animation: hh-rise .22s ease-out both; }
+
+@keyframes hh-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+.hh-shimmer {
+  background-image: linear-gradient(90deg,
+    var(--color-sunk) 25%, #EFEDEA 50%, var(--color-sunk) 75%);
+  background-size: 200% 100%;
+  animation: hh-shimmer 1.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hh-pulse, .hh-rise, .hh-shimmer { animation: none !important; }
+  * { transition-duration: .01ms !important; }
+}
+
+/*
+  Print.
+
+  The prep sheet is the one page meant to leave the screen. Paper has no
+  sidebar, no agent panel and no hover state, so all of it goes — and colour
+  goes with it, because a warm off-white background prints as a grey smear and
+  costs someone a cartridge for nothing.
+
+  `break-inside: avoid` on each cocktail is the rule that matters most: a recipe
+  split across two sheets is a recipe someone gets wrong.
+*/
+@media print {
+  @page { margin: 14mm; }
+
+  aside, nav, .hh-no-print { display: none !important; }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .hh-print-root {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .hh-keep-together {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Hairlines survive printing; soft greys do not. */
+  .border-line, .border-line\/60 { border-color: #ccc !important; }
+  * { box-shadow: none !important; }
+}
+
+
+/* HH_SIMPLIFIED_SIDEBAR
+   Keep the product navigation focused on Home, Events and Cocktails.
+   The pages still exist; they are simply not primary navigation items.
+*/
+aside a[href="/suppliers"],
+aside a[href="/mappings"],
+aside a[href="/settings"] {
+  display: none !important;
+}

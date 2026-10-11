@@ -1,0 +1,10 @@
+venv/
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+*.pyc
+*.db
+*.sqlite
+*.sqlite3
+scripts/data/*.xlsx

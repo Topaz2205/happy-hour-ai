@@ -1,0 +1,585 @@
+{
+  "working_stores": [
+    "Alcohome",
+    "Free Spirits & Co",
+    "בית היין",
+    "דרך היין",
+    "סחוט (Sahut)",
+    "עולם היין",
+    "משקאות המשמח"
+  ],
+  "summary": {
+    "ingredients": 34,
+    "three_plus": 9,
+    "two": 6,
+    "less_than_two": 19
+  },
+  "ingredients": [
+    {
+      "ingredient": "Crème de Cacao",
+      "store_count": 0,
+      "stores": {},
+      "terms": [
+        "Crème de Cacao"
+      ]
+    },
+    {
+      "ingredient": "Fresh Lime Juice",
+      "store_count": 0,
+      "stores": {},
+      "terms": [
+        "Fresh Lime Juice",
+        "Lime Juice"
+      ]
+    },
+    {
+      "ingredient": "Fresh Mint",
+      "store_count": 0,
+      "stores": {},
+      "terms": [
+        "Fresh Mint",
+        "Mint leaves"
+      ]
+    },
+    {
+      "ingredient": "Green Chartreuse",
+      "store_count": 0,
+      "stores": {},
+      "terms": [
+        "Green Chartreuse"
+      ]
+    },
+    {
+      "ingredient": "Havana Club Añejo 3 Años Rum",
+      "store_count": 0,
+      "stores": {},
+      "terms": [
+        "Havana Club 3",
+        "Havana Club Añejo 3 Años Rum",
+        "רום קאנוקה"
+      ]
+    },
+    {
+      "ingredient": "Olive Brine",
+      "store_count": 0,
+      "stores": {},
+      "terms": [
+        "Olive Brine"
+      ]
+    },
+    {
+      "ingredient": "Rich Syrup (2:1)",
+      "store_count": 0,
+      "stores": {},
+      "terms": [
+        "Rich Syrup",
+        "Rich Syrup (2:1)"
+      ]
+    },
+    {
+      "ingredient": "Simple Syrup (1:1)",
+      "store_count": 0,
+      "stores": {},
+      "terms": [
+        "Simple Syrup",
+        "Simple Syrup (1:1)"
+      ]
+    },
+    {
+      "ingredient": "Soda Water",
+      "store_count": 0,
+      "stores": {},
+      "terms": [
+        "Soda",
+        "Soda Water",
+        "סודה"
+      ]
+    },
+    {
+      "ingredient": "Cognac VS",
+      "store_count": 1,
+      "stores": {
+        "Alcohome": {
+          "score": 50,
+          "url": "https://alcohome.co.il/product-page/%d7%a7%d7%95%d7%a0%d7%99%d7%90%d7%a7-vsop-%d7%a4%d7%a8%d7%90%d7%a4%d7%9f-frapin-vsop-cognac/"
+        }
+      },
+      "terms": [
+        "Cognac VS"
+      ]
+    },
+    {
+      "ingredient": "Dry Curacao Pierre Ferrand",
+      "store_count": 1,
+      "stores": {
+        "Alcohome": {
+          "score": 65,
+          "url": "https://alcohome.co.il/product-page/%d7%a7%d7%95%d7%a0%d7%99%d7%90%d7%a7-%d7%a4%d7%99%d7%99%d7%a8-%d7%a4%d7%a8%d7%90%d7%9f-%d7%a8%d7%96%d7%a8%d7%91-700-%d7%9e%d7%b4%d7%9c-pierre-ferrand-1er-cru-de-cognac-reserve-grande-champagne-cognac/"
+        }
+      },
+      "terms": [
+        "Dry Curacao Pierre Ferrand"
+      ]
+    },
+    {
+      "ingredient": "Espresso Shot",
+      "store_count": 1,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%95%d7%95%d7%93%d7%a7%d7%94-%d7%95%d7%95%d7%90%d7%9f-%d7%92%d7%95%d7%9a-%d7%93%d7%90%d7%91%d7%9c-%d7%90%d7%a1%d7%a4%d7%a8%d7%a1%d7%95-700-%d7%9e%d7%b4%d7%9c-van-gogh-double-espresso/"
+        }
+      },
+      "terms": [
+        "Espresso",
+        "Espresso Shot"
+      ]
+    },
+    {
+      "ingredient": "Foamer (Aquafaba/Egg White)",
+      "store_count": 1,
+      "stores": {
+        "Free Spirits & Co": {
+          "score": 65,
+          "url": "https://freespiritsandco.co.il/product/gofers-foamer/"
+        }
+      },
+      "terms": [
+        "Foamer (Aquafaba/Egg White)",
+        "Gofer's Foamer"
+      ]
+    },
+    {
+      "ingredient": "Fresh Lemon Juice",
+      "store_count": 1,
+      "stores": {
+        "סחוט (Sahut)": {
+          "score": 100,
+          "url": "https://www.sahut.co.il/product-page/100-לימון-סחוט-2-ליטר"
+        }
+      },
+      "terms": [
+        "Fresh Lemon Juice",
+        "Lemon Juice",
+        "לימון סחוט"
+      ]
+    },
+    {
+      "ingredient": "Ginger Beer",
+      "store_count": 1,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/24-%d7%99%d7%b4%d7%97-%d7%98%d7%a8%d7%99-%d7%a1%d7%a0%d7%98%d7%a1-%d7%92%d7%99%d7%a0%d7%92%d7%a8-%d7%91%d7%99%d7%a8-three-cents-ginger-beer/"
+        }
+      },
+      "terms": [
+        "Fever Tree Ginger Beer",
+        "Ginger Beer"
+      ]
+    },
+    {
+      "ingredient": "Luxardo Maraschino",
+      "store_count": 1,
+      "stores": {
+        "Alcohome": {
+          "score": 50,
+          "url": "https://alcohome.co.il/product-page/%d7%9c%d7%95%d7%a7%d7%a1%d7%a8%d7%93%d7%95-%d7%a4%d7%a8%d7%a0%d7%98-%d7%90%d7%9e%d7%90%d7%a8%d7%95-luxardo-fernet/"
+        }
+      },
+      "terms": [
+        "Luxardo Maraschino"
+      ]
+    },
+    {
+      "ingredient": "Mancino Secco Dry Vermouth",
+      "store_count": 1,
+      "stores": {
+        "Free Spirits & Co": {
+          "score": 50,
+          "url": "https://freespiritsandco.co.il/product/vermouth-mancino-seco/"
+        }
+      },
+      "terms": [
+        "Mancino Secco",
+        "Mancino Secco Dry Vermouth"
+      ]
+    },
+    {
+      "ingredient": "Olive",
+      "store_count": 1,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%92%d7%99%d7%9f-%d7%99%d7%a8%d7%95%d7%a9%d7%9c%d7%9e%d7%99-%d7%a2%d7%9c%d7%99-%d7%96%d7%99%d7%aa-olive-branch-gin-jerusalem/"
+        }
+      },
+      "terms": [
+        "Olive"
+      ]
+    },
+    {
+      "ingredient": "Red Vermouth",
+      "store_count": 1,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%90%d7%a4%d7%a8%d7%95%d7%a1-%d7%95%d7%a8%d7%9e%d7%95%d7%98-%d7%91%d7%9c%d7%90%d7%a7-%d7%a4%d7%95%d7%a8%d7%a1%d7%98-%d7%90%d7%93%d7%95%d7%9d-apros-red-vermouth/"
+        }
+      },
+      "terms": [
+        "Red Vermouth"
+      ]
+    },
+    {
+      "ingredient": "Angostura Aromatic Bitters",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": {
+          "score": 65,
+          "url": "https://alcohome.co.il/product-page/%d7%90%d7%a0%d7%92%d7%a1%d7%98%d7%95%d7%a8%d7%94-%d7%90%d7%a8%d7%9e%d7%95%d7%98%d7%99%d7%a7-%d7%91%d7%99%d7%98%d7%a8%d7%a1/"
+        },
+        "Free Spirits & Co": {
+          "score": 50,
+          "url": "https://freespiritsandco.co.il/product/holy-bitters-hawaij-spices/"
+        }
+      },
+      "terms": [
+        "Angostura Aromatic Bitters",
+        "Angostura Bitters",
+        "אנגסטורה ביטרס"
+      ]
+    },
+    {
+      "ingredient": "Fernet Branca",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": {
+          "score": 50,
+          "url": "https://alcohome.co.il/product-page/%d7%9c%d7%95%d7%a7%d7%a1%d7%a8%d7%93%d7%95-%d7%a4%d7%a8%d7%a0%d7%98-%d7%90%d7%9e%d7%90%d7%a8%d7%95-luxardo-fernet/"
+        },
+        "Free Spirits & Co": {
+          "score": 50,
+          "url": "https://freespiritsandco.co.il/product/fernet-angeloco-tempus-fugit/"
+        }
+      },
+      "terms": [
+        "Fernet Branca"
+      ]
+    },
+    {
+      "ingredient": "Kina L'Aero D'Or",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": {
+          "score": 65,
+          "url": "https://alcohome.co.il/product-page/%d7%90%d7%a4%d7%a8%d7%99%d7%98%d7%99%d7%a3-%d7%9e%d7%a8%d7%99%d7%a8-%d7%a7%d7%99%d7%a0%d7%94-%d7%9c%d7%90%d7%a8%d7%95-%d7%93%d7%90%d7%95%d7%a8-kina-laero-dor/"
+        },
+        "Free Spirits & Co": {
+          "score": 65,
+          "url": "https://freespiritsandco.co.il/product/kina-laero-dor/"
+        }
+      },
+      "terms": [
+        "Kina L'Aero D'Or",
+        "Kina L’Aero D’Or"
+      ]
+    },
+    {
+      "ingredient": "Mancino Bianco Vermouth",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": {
+          "score": 50,
+          "url": "https://alcohome.co.il/product-page/%d7%95%d7%95%d7%a8%d7%9e%d7%95%d7%98-%d7%90%d7%a8%d7%95%d7%93%d7%99-%d7%9c%d7%91%d7%9f-arudi-vermouth-bianco/"
+        },
+        "Free Spirits & Co": {
+          "score": 100,
+          "url": "https://freespiritsandco.co.il/product/mancino-bianco-ambrato/"
+        }
+      },
+      "terms": [
+        "Mancino Bianco",
+        "Mancino Bianco Vermouth"
+      ]
+    },
+    {
+      "ingredient": "Olmeca Silver Tequila",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": {
+          "score": 50,
+          "url": "https://alcohome.co.il/product-page/%d7%a4%d7%98%d7%a8%d7%95%d7%9f-%d7%a8%d7%95%d7%a7%d7%94-%d7%a1%d7%99%d7%9c%d7%91%d7%a8-roca-patron-silver/"
+        },
+        "משקאות המשמח": {
+          "score": 50,
+          "url": "https://www.hamesameach.co.il/product/%d7%98%d7%a7%d7%99%d7%9c%d7%94-%d7%90%d7%95%d7%9c%d7%9e%d7%a7%d7%94-%d7%90%d7%9c%d7%98%d7%95%d7%a1-%d7%a4%d7%9c%d7%98%d7%94-olmeca-altos-plata/"
+        }
+      },
+      "terms": [
+        "Olmeca Silver",
+        "Olmeca Silver Tequila"
+      ]
+    },
+    {
+      "ingredient": "Savoia Americano",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%a1%d7%91%d7%95%d7%99%d7%94-%d7%90%d7%9e%d7%a8%d7%99%d7%a7%d7%a0%d7%95-%d7%a8%d7%95%d7%a1%d7%95-savoia-americano-rosso/"
+        },
+        "Free Spirits & Co": {
+          "score": 100,
+          "url": "https://freespiritsandco.co.il/product/savoia-americano-rosso/"
+        }
+      },
+      "terms": [
+        "Savoia Americano"
+      ]
+    },
+    {
+      "ingredient": "Beluga Noble Vodka",
+      "store_count": 3,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%95%d7%95%d7%93%d7%a7%d7%94-%d7%92%d7%a8%d7%99%d7%99%d7%92%d7%95%d7%a1-1-5-%d7%9c%d7%99%d7%98%d7%a8-grey-goose/"
+        },
+        "בית היין": {
+          "score": 100,
+          "url": "https://winehouse.co.il/product/%d7%95%d7%95%d7%93%d7%a7%d7%94-%d7%92%d7%a8%d7%99%d7%99%d7%92%d7%95%d7%a1-%d7%9c%d7%99%d7%98%d7%a8/"
+        },
+        "דרך היין": {
+          "score": 100,
+          "url": "https://www.wineroute.co.il/product/%d7%95%d7%95%d7%93%d7%a7%d7%94-%d7%92%d7%a8%d7%99%d7%99%d7%92%d7%95%d7%a1-%d7%9c%d7%99%d7%98%d7%a8/"
+        }
+      },
+      "terms": [
+        "Beluga Nobel",
+        "Beluga Noble Vodka",
+        "גרייגוס"
+      ]
+    },
+    {
+      "ingredient": "Cucumber",
+      "store_count": 3,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%92%d7%99%d7%9f-24-%d7%94%d7%a8%d7%91%d7%a1-%d7%91%d7%95%d7%98%d7%a0%d7%99%d7%a7-%d7%91%d7%a0%d7%99%d7%97%d7%95%d7%97-%d7%9e%d7%9c%d7%a4%d7%a4%d7%95%d7%9f-%d7%95%d7%a0%d7%a2%d7%a0%d7%a2/"
+        },
+        "עולם היין": {
+          "score": 100,
+          "url": "https://olamhayain.co.il/product/%d7%a7%d7%95%d7%a8%d7%a0%d7%99%d7%a9%d7%95%d7%a0%d7%99%d7%9d-%d7%9e%d7%9c%d7%a4%d7%a4%d7%95%d7%9f-%d7%91%d7%97%d7%95%d7%9e%d7%a5/"
+        },
+        "משקאות המשמח": {
+          "score": 100,
+          "url": "https://www.hamesameach.co.il/product/%d7%91%d7%9c%d7%95%d7%92%d7%94-%d7%91%d7%95%d7%98%d7%a0%d7%99%d7%a7%d7%9c%d7%96-%d7%9e%d7%9c%d7%a4%d7%a4%d7%95%d7%9f-%d7%9e%d7%a0%d7%98%d7%94-%d7%9c%d7%99%d7%98%d7%a8/"
+        }
+      },
+      "terms": [
+        "Cucumber",
+        "Cucumber slices",
+        "מלפפון"
+      ]
+    },
+    {
+      "ingredient": "Orange Bitters",
+      "store_count": 3,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%91%d7%99%d7%98%d7%a8-%d7%9c%d7%95%d7%a7%d7%a1%d7%a8%d7%93%d7%95-%d7%90%d7%a8%d7%95%d7%9e%d7%98%d7%99%d7%a7-%d7%aa%d7%a4%d7%95%d7%96-200-%d7%9e%d7%9c-luxardo-orange-bitters/"
+        },
+        "Free Spirits & Co": {
+          "score": 50,
+          "url": "https://freespiritsandco.co.il/product/holy-bitters-hawaij-spices/"
+        },
+        "משקאות המשמח": {
+          "score": 50,
+          "url": "https://www.hamesameach.co.il/product/%d7%94%d7%a8%d7%a6%d7%95%d7%92-%d7%9e%d7%95%d7%a1%d7%a7%d7%98-%d7%9b%d7%aa%d7%95%d7%9d-%d7%91%d7%a6%d7%99%d7%a8-%d7%9e%d7%90%d7%95%d7%97%d7%a8-750-%d7%9e%d7%9c-herzog-orange-muscat-late-har/?StoreProductId=3927"
+        }
+      },
+      "terms": [
+        "Orange Bitters"
+      ]
+    },
+    {
+      "ingredient": "Sparkling Wine / Prosecco",
+      "store_count": 3,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%a7%d7%90%d7%95%d7%95%d7%94-%d7%90%d7%99%d7%91%d7%a8%d7%99%d7%a7%d7%94-%d7%99%d7%91%d7%a9/"
+        },
+        "בית היין": {
+          "score": 100,
+          "url": "https://winehouse.co.il/product/%d7%a7%d7%90%d7%95%d7%95%d7%94-%d7%90%d7%99%d7%91%d7%a8%d7%99%d7%a7%d7%94-%d7%9c%d7%91%d7%9f-%d7%97%d7%a6%d7%99-%d7%99%d7%91%d7%a9/"
+        },
+        "משקאות המשמח": {
+          "score": 50,
+          "url": "https://www.hamesameach.co.il/product/%d7%a7%d7%95%d7%95%d7%94-%d7%90%d7%99%d7%91%d7%a8%d7%99%d7%a7%d7%94-%d7%99%d7%91%d7%a9/?StoreProductId=2813"
+        }
+      },
+      "terms": [
+        "Sparkling Wine",
+        "Sparkling Wine / Prosecco",
+        "קאווה איבריקה"
+      ]
+    },
+    {
+      "ingredient": "Beefeater London Dry Gin",
+      "store_count": 4,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%91%d7%95%d7%9e%d7%91%d7%99%d7%99-1-%d7%9c%d7%99%d7%98%d7%a8-%d7%a7%d7%98%d7%9c-%d7%95%d7%95%d7%90%d7%9f-750-%d7%9e%d7%b4%d7%9c/"
+        },
+        "בית היין": {
+          "score": 100,
+          "url": "https://winehouse.co.il/product/%d7%92%d7%99%d7%9f-%d7%98%d7%95%d7%a0%d7%99%d7%a7-%d7%91%d7%a4%d7%97%d7%99%d7%aa-%d7%91%d7%95%d7%9e%d7%91%d7%99%d7%99/"
+        },
+        "עולם היין": {
+          "score": 100,
+          "url": "https://olamhayain.co.il/product/%d7%9e%d7%99%d7%a0%d7%99%d7%90%d7%98%d7%95%d7%a8%d7%94-%d7%92%d7%99%d7%9f-%d7%91%d7%95%d7%9e%d7%91%d7%99%d7%99-50-%d7%9e%d7%9c/"
+        },
+        "משקאות המשמח": {
+          "score": 100,
+          "url": "https://www.hamesameach.co.il/product/%d7%92%d7%99%d7%9f-%d7%91%d7%95%d7%9e%d7%91%d7%99%d7%99-1-%d7%9c%d7%99%d7%98%d7%a8/?StoreProductId=2435"
+        }
+      },
+      "terms": [
+        "Beefeater",
+        "Beefeater London Dry Gin",
+        "בומביי"
+      ]
+    },
+    {
+      "ingredient": "Aperol",
+      "store_count": 5,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%90%d7%a4%d7%a8%d7%95%d7%9c-2-%d7%a7%d7%90%d7%95%d7%95%d7%94/"
+        },
+        "בית היין": {
+          "score": 100,
+          "url": "https://winehouse.co.il/product/%d7%90%d7%a4%d7%a8%d7%95%d7%9c-%d7%9c%d7%99%d7%98%d7%a8/"
+        },
+        "דרך היין": {
+          "score": 100,
+          "url": "https://www.wineroute.co.il/product/%d7%90%d7%a4%d7%a8%d7%95%d7%9c-700-%d7%9e%d7%9c-%d7%a6%d7%99%d7%a0%d7%96%d7%a0%d7%95-%d7%a4%d7%a8%d7%95-%d7%a9%d7%a4%d7%a8%d7%99%d7%a5/"
+        },
+        "עולם היין": {
+          "score": 100,
+          "url": "https://olamhayain.co.il/product/%d7%9c%d7%99%d7%a7%d7%a8-%d7%90%d7%a4%d7%a8%d7%95%d7%9c-%d7%9c%d7%99%d7%98%d7%a8/"
+        },
+        "משקאות המשמח": {
+          "score": 100,
+          "url": "https://www.hamesameach.co.il/product/%d7%90%d7%a4%d7%a8%d7%95%d7%9c-%d7%9c%d7%99%d7%98%d7%a8/?StoreProductId=2468"
+        }
+      },
+      "terms": [
+        "Aperol",
+        "אפרול"
+      ]
+    },
+    {
+      "ingredient": "Campari",
+      "store_count": 5,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%9e%d7%90%d7%a8%d7%96-%d7%a7%d7%9e%d7%a4%d7%a8%d7%99-%d7%a4%d7%9c%d7%95%d7%a1-%d7%92%d7%99%d7%92%d7%a8-700-%d7%9e%d7%9c-campari/"
+        },
+        "בית היין": {
+          "score": 100,
+          "url": "https://winehouse.co.il/product/%d7%a7%d7%9e%d7%a4%d7%a8%d7%99-%d7%a1%d7%95%d7%93%d7%94-100-%d7%9e%d7%b4%d7%9c/"
+        },
+        "דרך היין": {
+          "score": 100,
+          "url": "https://www.wineroute.co.il/product/%d7%a7%d7%9e%d7%a4%d7%a8%d7%99-%d7%9c%d7%99%d7%98%d7%a8/"
+        },
+        "עולם היין": {
+          "score": 100,
+          "url": "https://olamhayain.co.il/product/%d7%a7%d7%9e%d7%a4%d7%a8%d7%99-%d7%a0%d7%92%d7%a8%d7%95%d7%a0%d7%99/"
+        },
+        "משקאות המשמח": {
+          "score": 100,
+          "url": "https://www.hamesameach.co.il/product/%d7%a7%d7%9e%d7%a4%d7%a8%d7%99-%d7%9c%d7%99%d7%98%d7%a8/?StoreProductId=2560"
+        }
+      },
+      "terms": [
+        "Campari",
+        "קמפרי"
+      ]
+    },
+    {
+      "ingredient": "Four Roses Bourbon",
+      "store_count": 5,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%92%d7%a7-%d7%93%d7%a0%d7%99%d7%90%d7%9c%d7%a1-%d7%92%d7%9c%d7%98%d7%9c%d7%9e%d7%9f-%d7%92%d7%99%d7%a7-%d7%9c%d7%99%d7%98%d7%a8/"
+        },
+        "בית היין": {
+          "score": 100,
+          "url": "https://winehouse.co.il/product/%d7%92%d7%a7-%d7%93%d7%a0%d7%99%d7%90%d7%9c%d7%a1-%d7%9e%d7%90%d7%a1%d7%98%d7%a8-%d7%93%d7%99%d7%a1%d7%98%d7%99%d7%9c%d7%a8/"
+        },
+        "דרך היין": {
+          "score": 100,
+          "url": "https://www.wineroute.co.il/product/%d7%95%d7%99%d7%a1%d7%a7%d7%99-%d7%92%d7%a7-%d7%93%d7%a0%d7%99%d7%90%d7%9c%d7%a1-1-%d7%9c%d7%99%d7%98%d7%a8/"
+        },
+        "עולם היין": {
+          "score": 100,
+          "url": "https://olamhayain.co.il/product/%d7%95%d7%95%d7%99%d7%a1%d7%a7%d7%99-%d7%92%d7%a7-%d7%93%d7%a0%d7%99%d7%90%d7%9c%d7%a1-%d7%93%d7%91%d7%a9-0-7/"
+        },
+        "משקאות המשמח": {
+          "score": 100,
+          "url": "https://www.hamesameach.co.il/product/%d7%92%d7%a7-%d7%93%d7%a0%d7%99%d7%90%d7%9c%d7%a1-%d7%9c%d7%99%d7%98%d7%a8/?StoreProductId=3482"
+        }
+      },
+      "terms": [
+        "Four Roses Bourbon",
+        "Four Roses White Label",
+        "גק' דניאלס"
+      ]
+    },
+    {
+      "ingredient": "Rittenhouse Rye Whiskey",
+      "store_count": 6,
+      "stores": {
+        "Alcohome": {
+          "score": 100,
+          "url": "https://alcohome.co.il/product-page/%d7%92%d7%a7-%d7%93%d7%a0%d7%99%d7%90%d7%9c%d7%a1-%d7%92%d7%9c%d7%98%d7%9c%d7%9e%d7%9f-%d7%92%d7%99%d7%a7-%d7%9c%d7%99%d7%98%d7%a8/"
+        },
+        "Free Spirits & Co": {
+          "score": 50,
+          "url": "https://freespiritsandco.co.il/product/rittenhouse-straight-rye-whisky-bottled-in-bond/"
+        },
+        "בית היין": {
+          "score": 100,
+          "url": "https://winehouse.co.il/product/%d7%92%d7%a7-%d7%93%d7%a0%d7%99%d7%90%d7%9c%d7%a1-%d7%9e%d7%90%d7%a1%d7%98%d7%a8-%d7%93%d7%99%d7%a1%d7%98%d7%99%d7%9c%d7%a8/"
+        },
+        "דרך היין": {
+          "score": 100,
+          "url": "https://www.wineroute.co.il/product/%d7%95%d7%99%d7%a1%d7%a7%d7%99-%d7%92%d7%a7-%d7%93%d7%a0%d7%99%d7%90%d7%9c%d7%a1-1-%d7%9c%d7%99%d7%98%d7%a8/"
+        },
+        "עולם היין": {
+          "score": 100,
+          "url": "https://olamhayain.co.il/product/%d7%95%d7%95%d7%99%d7%a1%d7%a7%d7%99-%d7%92%d7%a7-%d7%93%d7%a0%d7%99%d7%90%d7%9c%d7%a1-%d7%93%d7%91%d7%a9-0-7/"
+        },
+        "משקאות המשמח": {
+          "score": 100,
+          "url": "https://www.hamesameach.co.il/product/%d7%92%d7%a7-%d7%93%d7%a0%d7%99%d7%90%d7%9c%d7%a1-%d7%9c%d7%99%d7%98%d7%a8/?StoreProductId=3482"
+        }
+      },
+      "terms": [
+        "Rittenhouse Rye",
+        "Rittenhouse Rye Whiskey",
+        "גק' דניאלס"
+      ]
+    }
+  ]
+}

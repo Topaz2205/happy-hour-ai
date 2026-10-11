@@ -1,0 +1,48 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+backend/venv/
+backend/.venv/
+.pytest_cache/
+
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env.local
+
+# Logs
+*.log
+
+# Temporary backups we created while editing
+*.backup
+*.before-*
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Archives / project copies
+*.tar.gz
+*.zip
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Test/temp files
+tmp_*
+test_import*.db
+
+# Private business source workbooks
+backend/scripts/data/*.xlsx

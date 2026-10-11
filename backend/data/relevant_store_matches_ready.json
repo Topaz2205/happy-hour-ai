@@ -1,0 +1,1064 @@
+{
+  "stores": [
+    "Alcohome",
+    "Free Spirits & Co",
+    "בית היין",
+    "דרך היין",
+    "סחוט (Sahut)",
+    "עולם היין",
+    "משקאות המשמח"
+  ],
+  "ingredients": [
+    {
+      "ingredient_id": "8aec75c7-f97e-483c-beb9-740c076e1452",
+      "ingredient": "Dry Curacao Pierre Ferrand",
+      "store_count": 0,
+      "stores": {}
+    },
+    {
+      "ingredient_id": "f5a8cc99-81c1-4b00-ae08-17c8899567b9",
+      "ingredient": "Fernet Branca",
+      "store_count": 1,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "פרנה ברנקה 700 מ״ל (Fernet Branca)",
+            "price": 94.9,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%a4%d7%a8%d7%a0%d7%94-%d7%91%d7%a8%d7%a0%d7%a7%d7%94/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "a81dbe69-01d8-42b0-b285-402e7e850b0e",
+      "ingredient": "Fresh Lemon Juice",
+      "store_count": 1,
+      "stores": {
+        "סחוט (Sahut)": [
+          {
+            "product": "100% לימון סחוט קפוא 2 ליטר",
+            "price": 32.0,
+            "size_ml": 2000.0,
+            "available": true,
+            "url": "https://www.sahut.co.il/product-page/100-לימון-סחוט-2-ליטר",
+            "score": 100,
+            "package_size_ml": 2000.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "a547b3bd-de46-4117-a706-157cbb42ab34",
+      "ingredient": "Fresh Lime Juice",
+      "store_count": 1,
+      "stores": {
+        "סחוט (Sahut)": [
+          {
+            "product": "לימון ליים סחוט 1 ליטר",
+            "price": 19.0,
+            "size_ml": 1000.0,
+            "available": true,
+            "url": "https://www.sahut.co.il/product-page/לימון-ליים-סחוט-1-ליטר",
+            "score": 100,
+            "package_size_ml": 1000.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "211faed2-d995-435c-b157-32b3ddf6fd14",
+      "ingredient": "Orange Bitters",
+      "store_count": 1,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "ביטר לוקסרדו ארומטיק תפוז 200 מ\"ל ( Luxardo Orange Bitters)",
+            "price": 89.9,
+            "size_ml": 200.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%91%d7%99%d7%98%d7%a8-%d7%9c%d7%95%d7%a7%d7%a1%d7%a8%d7%93%d7%95-%d7%90%d7%a8%d7%95%d7%9e%d7%98%d7%99%d7%a7-%d7%aa%d7%a4%d7%95%d7%96-200-%d7%9e%d7%9c-luxardo-orange-bitters/",
+            "score": 100,
+            "package_size_ml": 200.0
+          },
+          {
+            "product": "אנגוסטורה ביטרס תפוז (Angostura Orange Bitters)",
+            "price": 59.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%91%d7%99%d7%98%d7%a8%d7%a1-%d7%aa%d7%a4%d7%95%d7%96/",
+            "score": 100,
+            "package_size_ml": 330.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "b6a06bad-334f-416a-901d-0cb3939afeeb",
+      "ingredient": "Rittenhouse Rye Whiskey",
+      "store_count": 1,
+      "stores": {
+        "Free Spirits & Co": [
+          {
+            "product": "Rittenhouse Straight Rye Whisky BOTTLED-IN-BOND",
+            "price": 250.0,
+            "size_ml": null,
+            "available": null,
+            "url": "https://freespiritsandco.co.il/product/rittenhouse-straight-rye-whisky-bottled-in-bond/",
+            "score": 75,
+            "package_size_ml": 700.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "90b2f20c-3f8e-42e5-8b6e-b605c9afdff3",
+      "ingredient": "Soda Water",
+      "store_count": 1,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "ארגז אוויאן סודה זכוכית 330 מ\"ל 20 יח' (evian)",
+            "price": 169.0,
+            "size_ml": 330.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%90%d7%95%d7%95%d7%99%d7%90%d7%9f-%d7%a1%d7%95%d7%93%d7%94-330-%d7%9e%d7%9c-20-%d7%99%d7%97-%d7%96%d7%9b%d7%95%d7%9b%d7%99%d7%aa/",
+            "score": 55,
+            "package_size_ml": 6600.0
+          },
+          {
+            "product": "סודה לאו 24 יח' 325 מ״ל (Leo Soda)",
+            "price": 89.9,
+            "size_ml": 325.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%a1%d7%95%d7%93%d7%94-%d7%9c%d7%90%d7%95-24-%d7%99%d7%97-330-%d7%9e%d7%b4%d7%9c-leo-soda/",
+            "score": 55,
+            "package_size_ml": 7800.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "b8dad60d-482b-453a-bb1b-2517638019b3",
+      "ingredient": "Crème de Cacao",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "קרם דה קקאו וניל",
+            "price": 179.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%a7%d7%a8%d7%9d-%d7%93%d7%94-%d7%a7%d7%a7%d7%90%d7%95-%d7%95%d7%a0%d7%99%d7%9c/",
+            "score": 100,
+            "package_size_ml": 100.0
+          },
+          {
+            "product": "ג'יפארד ליקר קרם דה קקאו לבן (Giffard Liqueur Crème de Cacao blanc)",
+            "price": 119.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%92%d7%99%d7%a4%d7%90%d7%a8%d7%93-%d7%9c%d7%99%d7%a7%d7%a8-%d7%a7%d7%a8%d7%9d-%d7%93%d7%94-%d7%a7%d7%a7%d7%90%d7%95-%d7%9c%d7%91%d7%9f-giffard-liqueur-creme-de-cacao-blanc/",
+            "score": 100,
+            "package_size_ml": 100.0
+          }
+        ],
+        "Free Spirits & Co": [
+          {
+            "product": "Crème de Cacao a la Vanille",
+            "price": 185.0,
+            "size_ml": null,
+            "available": null,
+            "url": "https://freespiritsandco.co.il/product/creme-de-cacao-la-vanille/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "53f4efc7-7182-470e-8ae3-77810975b7d7",
+      "ingredient": "Kina L'Aero D'Or",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "אפריטיף מריר קינה לארו דאור (Kina L'Aero d'Or)",
+            "price": 179.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%90%d7%a4%d7%a8%d7%99%d7%98%d7%99%d7%a3-%d7%9e%d7%a8%d7%99%d7%a8-%d7%a7%d7%99%d7%a0%d7%94-%d7%9c%d7%90%d7%a8%d7%95-%d7%93%d7%90%d7%95%d7%a8-kina-laero-dor/",
+            "score": 100,
+            "package_size_ml": 100.0
+          }
+        ],
+        "Free Spirits & Co": [
+          {
+            "product": "Kina L'Aero D'Or",
+            "price": 185.0,
+            "size_ml": null,
+            "available": null,
+            "url": "https://freespiritsandco.co.il/product/kina-laero-dor/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "4109a0b5-4b0c-4ba5-bde1-3b5f0cc7cf97",
+      "ingredient": "Luxardo Maraschino",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "לוקסרדו מרסקינו (Luxardo Maraschino)",
+            "price": 129.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%9c%d7%95%d7%a7%d7%a1%d7%90%d7%a8%d7%93%d7%95-%d7%9e%d7%a8%d7%a1%d7%a7%d7%99%d7%a0%d7%95/",
+            "score": 100,
+            "package_size_ml": 330.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "ליקר לוקסרדו מרסקינו להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 128.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%9c%d7%99%d7%a7%d7%a8-%d7%9e%d7%a8%d7%a1%d7%a7%d7%99%d7%a0%d7%95-%d7%9c%d7%95%d7%a7%d7%a1%d7%a8%d7%93%d7%95/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "ba7ed1bf-b82a-4809-a888-c054f26e80de",
+      "ingredient": "Mancino Bianco Vermouth",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "וורמוט מנצ'ינו ביאנקו (Vermouth Mancino Bianco)",
+            "price": 109.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%95%d7%a8%d7%9e%d7%95%d7%98-%d7%9e%d7%a0%d7%a6%d7%99%d7%a0%d7%95-%d7%91%d7%99%d7%90%d7%a0%d7%a7%d7%95/",
+            "score": 100,
+            "package_size_ml": 250.0
+          }
+        ],
+        "Free Spirits & Co": [
+          {
+            "product": "Vermouth Mancino Bianco – Ambrato",
+            "price": 119.0,
+            "size_ml": null,
+            "available": null,
+            "url": "https://freespiritsandco.co.il/product/mancino-bianco-ambrato/",
+            "score": 100,
+            "package_size_ml": 750.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "706e3cb9-8b62-4cfa-910d-05dfc80e1228",
+      "ingredient": "Mancino Secco Dry Vermouth",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "ורמוט מנצ'ינו סקו (Vermouth Mancino Secco)",
+            "price": 109.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%95%d7%a8%d7%9e%d7%95%d7%98-%d7%9e%d7%a0%d7%a6%d7%99%d7%a0%d7%95-%d7%a1%d7%a7%d7%95/",
+            "score": 100,
+            "package_size_ml": 200.0
+          }
+        ],
+        "Free Spirits & Co": [
+          {
+            "product": "Vermouth Mancino Secco",
+            "price": 119.0,
+            "size_ml": null,
+            "available": null,
+            "url": "https://freespiritsandco.co.il/product/vermouth-mancino-seco/",
+            "score": 100,
+            "package_size_ml": 750.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "a07c8c9d-efed-4190-9065-6d7f22dda5de",
+      "ingredient": "Olmeca Silver Tequila",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "טקילה אולמקה סילבר (Olmeca Tequila Silver)",
+            "price": 99.9,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%90%d7%95%d7%9c%d7%9e%d7%a7%d7%94-%d7%a1%d7%99%d7%9c%d7%91%d7%a8-700%d7%9e%d7%9e/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ],
+        "בית היין": [
+          {
+            "product": "טקילה אולמקה סילבר 700 מ\"ל",
+            "price": 115.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%98%d7%a7%d7%99%d7%9c%d7%94-%d7%90%d7%95%d7%9c%d7%9e%d7%a7%d7%94-%d7%a1%d7%99%d7%9c%d7%91%d7%a8/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "6088c9a6-f347-4b29-9794-669a780410eb",
+      "ingredient": "Savoia Americano",
+      "store_count": 2,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "סבויה אמריקנו רוסו (Savoia Americano Rosso)",
+            "price": 124.9,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%a1%d7%91%d7%95%d7%99%d7%94-%d7%90%d7%9e%d7%a8%d7%99%d7%a7%d7%a0%d7%95-%d7%a8%d7%95%d7%a1%d7%95-savoia-americano-rosso/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ],
+        "Free Spirits & Co": [
+          {
+            "product": "SAVOIA Americano Rosso",
+            "price": 135.0,
+            "size_ml": null,
+            "available": null,
+            "url": "https://freespiritsandco.co.il/product/savoia-americano-rosso/",
+            "score": 100,
+            "package_size_ml": 500.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "7efbe097-eeb4-4fc2-8a1e-4675b757bcd6",
+      "ingredient": "Angostura Aromatic Bitters",
+      "store_count": 3,
+      "stores": {
+        "בית היין": [
+          {
+            "product": "אנגוסטורה ארומטיק ביטר",
+            "price": 88.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%90%d7%a0%d7%92%d7%95%d7%a1%d7%98%d7%95%d7%a8%d7%94-%d7%90%d7%a8%d7%95%d7%9e%d7%98%d7%99%d7%a7-%d7%91%d7%99%d7%98%d7%a8/",
+            "score": 75,
+            "package_size_ml": 200.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "ביטר אנגוסטורה 0.2 להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 89.0,
+            "size_ml": 200.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%91%d7%99%d7%98%d7%a8-%d7%90%d7%a0%d7%92%d7%95%d7%a1%d7%98%d7%95%d7%a8%d7%94-0-2/",
+            "score": 75,
+            "package_size_ml": 200.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "אנגוסטורה ארומטיק ביטרס",
+            "price": 85.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%90%d7%a0%d7%92%d7%95%d7%a1%d7%98%d7%95%d7%a8%d7%94-%d7%90%d7%a8%d7%95%d7%9e%d7%98%d7%99%d7%a7-%d7%91%d7%99%d7%98%d7%a8%d7%a1/?StoreProductId=2873",
+            "score": 75,
+            "package_size_ml": null
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "a3f6f1ba-b6ae-4341-ae83-11fe8e73a6f5",
+      "ingredient": "Beefeater London Dry Gin",
+      "store_count": 3,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "ג׳ין ביפיטר 700 מ\"ל (Beefeater gin)",
+            "price": 94.9,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%91%d7%99%d7%a4%d7%99%d7%98%d7%a8/",
+            "score": 75,
+            "package_size_ml": 700.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "ג'ין ביפיטר 0.7 להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 89.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%92%d7%99%d7%9f-%d7%91%d7%99%d7%a4%d7%99%d7%98%d7%a8/",
+            "score": 75,
+            "package_size_ml": 700.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "ביפיטר",
+            "price": 109.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%91%d7%99%d7%a4%d7%99%d7%98%d7%a8/?StoreProductId=2803",
+            "score": 75,
+            "package_size_ml": 700.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "a5d670ff-5e11-40a0-8f56-767a58bfb17e",
+      "ingredient": "Green Chartreuse",
+      "store_count": 3,
+      "stores": {
+        "בית היין": [
+          {
+            "product": "ליקר שרטרז ירוק",
+            "price": 300.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%9c%d7%99%d7%a7%d7%a8-%d7%a9%d7%a8%d7%98%d7%a8%d7%96-%d7%99%d7%a8%d7%95%d7%a7-2/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "ליקר שרטרז ירוק 0.7 להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 299.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%9c%d7%99%d7%a7%d7%a8-%d7%a9%d7%a8%d7%98%d7%a8%d7%96-%d7%99%d7%a8%d7%95%d7%a7-0-7/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "שרטרז ירוק",
+            "price": 359.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%a9%d7%a8%d7%98%d7%a8%d7%96-%d7%99%d7%a8%d7%95%d7%a7/?StoreProductId=3099",
+            "score": 100,
+            "package_size_ml": null
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "fbaa25bf-7a45-43f2-a4f3-3498df74ed86",
+      "ingredient": "Aperol",
+      "store_count": 4,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "אפרול 700 מ״ל (Aperol)",
+            "price": 59.9,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%90%d7%a4%d7%a8%d7%95%d7%9c-700%d7%9e%d7%b4%d7%9e/",
+            "score": 75,
+            "package_size_ml": 700.0
+          },
+          {
+            "product": "אפרול ליטר (Aperol 1L)",
+            "price": 64.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%90%d7%a4%d7%a8%d7%95%d7%9c/",
+            "score": 75,
+            "package_size_ml": 1000.0
+          }
+        ],
+        "בית היין": [
+          {
+            "product": "אפרול ליטר",
+            "price": 75.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%90%d7%a4%d7%a8%d7%95%d7%9c-%d7%9c%d7%99%d7%98%d7%a8/",
+            "score": 55,
+            "package_size_ml": 1000.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "ליקר אפרול ליטר להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 77.0,
+            "size_ml": 1000.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%9c%d7%99%d7%a7%d7%a8-%d7%90%d7%a4%d7%a8%d7%95%d7%9c-%d7%9c%d7%99%d7%98%d7%a8/",
+            "score": 55,
+            "package_size_ml": 1000.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "אפרול ליטר",
+            "price": 95.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%90%d7%a4%d7%a8%d7%95%d7%9c-%d7%9c%d7%99%d7%98%d7%a8/?StoreProductId=2468",
+            "score": 55,
+            "package_size_ml": 1000.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "19af13bd-8f3a-4e05-b707-cb1f053d5a83",
+      "ingredient": "Beluga Noble Vodka",
+      "store_count": 4,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "וודקה בלוגה נובל 750 מ\"ל (Beluga Noble)",
+            "price": 134.9,
+            "size_ml": 750.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%91%d7%9c%d7%95%d7%92%d7%94-%d7%a0%d7%95%d7%91%d7%9c/",
+            "score": 100,
+            "package_size_ml": 750.0
+          },
+          {
+            "product": "וודקה בלוגה נובל ליטר (Beluga Noble 1LT)",
+            "price": 149.9,
+            "size_ml": 1000.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%91%d7%9c%d7%95%d7%92%d7%94-%d7%a0%d7%95%d7%91%d7%9c-%d7%9c%d7%99%d7%98%d7%a8/",
+            "score": 100,
+            "package_size_ml": 1000.0
+          }
+        ],
+        "בית היין": [
+          {
+            "product": "בלוגה 700 מ״ל",
+            "price": 128.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%91%d7%9c%d7%95%d7%92%d7%94-700-%d7%9e%d7%b4%d7%9c/",
+            "score": 55,
+            "package_size_ml": 700.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "וודקה בלוגה 0.7 להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 129.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%95%d7%95%d7%93%d7%a7%d7%94-%d7%91%d7%9c%d7%95%d7%92%d7%94-0-7/",
+            "score": 55,
+            "package_size_ml": 700.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "וודקה בלוגה ליטר",
+            "price": 159.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%95%d7%95%d7%93%d7%a7%d7%94-%d7%91%d7%9c%d7%95%d7%92%d7%94-%d7%9c%d7%99%d7%98%d7%a8/?StoreProductId=2084",
+            "score": 55,
+            "package_size_ml": 1000.0
+          },
+          {
+            "product": "וודקה בלוגה 700 מ\"ל",
+            "price": 129.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%95%d7%95%d7%93%d7%a7%d7%94-%d7%91%d7%9c%d7%95%d7%92%d7%94-700-%d7%9e%d7%9c/?StoreProductId=2074",
+            "score": 55,
+            "package_size_ml": 700.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "b9826262-54c1-46ac-a5f5-b9fe8b403283",
+      "ingredient": "Campari",
+      "store_count": 4,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "קמפרי 700 מ\"ל (Campari)",
+            "price": 64.9,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%a7%d7%9e%d7%a4%d7%a8%d7%99-750/",
+            "score": 75,
+            "package_size_ml": 700.0
+          }
+        ],
+        "בית היין": [
+          {
+            "product": "קמפרי ליטר",
+            "price": 75.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%a7%d7%9e%d7%a4%d7%a8%d7%99-%d7%9c%d7%99%d7%98%d7%a8/",
+            "score": 55,
+            "package_size_ml": 1000.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "קמפרי ליטר להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 80.0,
+            "size_ml": 1000.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%a7%d7%9e%d7%a4%d7%a8%d7%99-%d7%9c%d7%99%d7%98%d7%a8/",
+            "score": 55,
+            "package_size_ml": 1000.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "קמפרי ליטר",
+            "price": 95.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%a7%d7%9e%d7%a4%d7%a8%d7%99-%d7%9c%d7%99%d7%98%d7%a8/?StoreProductId=2560",
+            "score": 55,
+            "package_size_ml": 1000.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "8d42b6ca-f278-4635-b075-7b857e00eb77",
+      "ingredient": "Cognac VS",
+      "store_count": 4,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "קוניאק vsop פראפן (Frapin Vsop Cognac)",
+            "price": 299.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%a7%d7%95%d7%a0%d7%99%d7%90%d7%a7-vsop-%d7%a4%d7%a8%d7%90%d7%a4%d7%9f-frapin-vsop-cognac/",
+            "score": 100,
+            "package_size_ml": 700.0
+          },
+          {
+            "product": "קוניאק vsop דיאו (Deau Vsop Cognac)",
+            "price": 244.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%a7%d7%95%d7%a0%d7%99%d7%90%d7%a7-vsop-%d7%93%d7%99%d7%90%d7%95-deau-vsop-cognac/",
+            "score": 100,
+            "package_size_ml": 100.0
+          }
+        ],
+        "בית היין": [
+          {
+            "product": "קוניאק מרטל VSOP",
+            "price": 248.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%a7%d7%95%d7%a0%d7%99%d7%90%d7%a7-%d7%9e%d7%a8%d7%98%d7%9c-vsop-2/",
+            "score": 75,
+            "package_size_ml": 700.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "קוניאק דופוי VSOP כשר לפסח להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 201.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%a7%d7%95%d7%a0%d7%99%d7%90%d7%a7-%d7%93%d7%95%d7%a4%d7%95%d7%99-vsop-%d7%9b%d7%a9%d7%a8-%d7%9c%d7%a4%d7%a1%d7%97/",
+            "score": 75,
+            "package_size_ml": 700.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "קוניאק קרויזט בלק לג'נד פרמייר קרו VSOP",
+            "price": 239.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%a7%d7%95%d7%a0%d7%99%d7%90%d7%a7-%d7%a7%d7%a8%d7%95%d7%99%d7%96%d7%98-%d7%91%d7%9c%d7%a7-%d7%9c%d7%92%d7%a0%d7%93-%d7%a4%d7%a8%d7%9e%d7%99%d7%99%d7%a8-%d7%a7%d7%a8%d7%95-vsop/",
+            "score": 75,
+            "package_size_ml": null
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "53185606-3fad-4513-b425-b9004b09f7e1",
+      "ingredient": "Four Roses Bourbon",
+      "store_count": 4,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "וויסקי פור רוזס 700 מ\"ל (Four Roses Whiskey)",
+            "price": 108.9,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%a4%d7%95%d7%a8-%d7%a8%d7%95%d7%96%d7%a1/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ],
+        "בית היין": [
+          {
+            "product": "פור רוזס",
+            "price": 110.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%a4%d7%95%d7%a8-%d7%a8%d7%95%d7%96%d7%a1/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "בורבון פור רוזס סמול באטצ 0.7 להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 143.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%91%d7%95%d7%a8%d7%91%d7%95%d7%9f-%d7%a4%d7%95%d7%a8-%d7%a8%d7%95%d7%96%d7%a1-%d7%a1%d7%9e%d7%95%d7%9c-%d7%91%d7%90%d7%98%d7%a6-0-7/",
+            "score": 100,
+            "package_size_ml": 700.0
+          },
+          {
+            "product": "בורבון פור רוזס ילו לייבל להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 107.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%91%d7%95%d7%a8%d7%91%d7%95%d7%9f-%d7%a4%d7%95%d7%a8-%d7%a8%d7%95%d7%96%d7%a1-%d7%99%d7%9c%d7%95-%d7%9c%d7%99%d7%99%d7%91%d7%9c/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "פור רוזס בורבון",
+            "price": 129.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%a4%d7%95%d7%a8-%d7%a8%d7%95%d7%96%d7%a1-%d7%91%d7%95%d7%a8%d7%91%d7%95%d7%9f/?StoreProductId=2735",
+            "score": 100,
+            "package_size_ml": 1000.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "98c07e54-6b86-4d66-80a0-c45c0672f77f",
+      "ingredient": "Ginger Beer",
+      "store_count": 4,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "תומאס הנרי ג'ינג'ר ביר 24 יח'",
+            "price": 129.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%aa%d7%95%d7%9e%d7%90%d7%a1-%d7%94%d7%a0%d7%a8%d7%99-%d7%92-%d7%99%d7%a0%d7%92-%d7%a8-%d7%91%d7%99%d7%a8-24-%d7%99%d7%97/",
+            "score": 100,
+            "package_size_ml": 100.0
+          },
+          {
+            "product": "תומאס הנרי ג'ינג'ר ביר 4 יח'",
+            "price": 24.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%aa%d7%95%d7%9e%d7%90%d7%a1-%d7%94%d7%a0%d7%a8%d7%99-%d7%92%d7%99%d7%a0%d7%92%d7%a8-%d7%91%d7%99%d7%a8-4-%d7%99%d7%97/",
+            "score": 100,
+            "package_size_ml": 330.0
+          }
+        ],
+        "בית היין": [
+          {
+            "product": "בירה קראביס ג'ינג'ר ביר",
+            "price": 10.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%91%d7%99%d7%a8%d7%94-%d7%a7%d7%a8%d7%90%d7%91%d7%99%d7%a1-%d7%92%d7%99%d7%a0%d7%92%d7%a8-%d7%91%d7%99%d7%a8/",
+            "score": 100,
+            "package_size_ml": 330.0
+          },
+          {
+            "product": "פיבר טרי ג'ינג'ר ביר כשר",
+            "price": 7.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%a4%d7%99%d7%91%d7%a8-%d7%98%d7%a8%d7%99-%d7%92%d7%99%d7%a0%d7%92%d7%a8-%d7%91%d7%99%d7%a8-%d7%9b%d7%a9%d7%a8/",
+            "score": 100,
+            "package_size_ml": 200.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "מיקסר פיבר טרי ג'ינג'ר ביר 0.2 להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 7.0,
+            "size_ml": 200.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%9e%d7%99%d7%a7%d7%a1%d7%a8-%d7%a4%d7%99%d7%91%d7%a8-%d7%98%d7%a8%d7%99-%d7%92%d7%99%d7%a0%d7%92%d7%a8-%d7%91%d7%99%d7%a8-0-2/",
+            "score": 100,
+            "package_size_ml": 200.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "פיבר טרי גינגר ביר",
+            "price": 7.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%a4%d7%99%d7%91%d7%a8-%d7%98%d7%a8%d7%99-%d7%92%d7%99%d7%a0%d7%92%d7%a8-%d7%91%d7%99%d7%a8/?StoreProductId=2470",
+            "score": 100,
+            "package_size_ml": null
+          },
+          {
+            "product": "טרי סנטס ג'ינג'ר ביר",
+            "price": 6.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%98%d7%a8%d7%99-%d7%a1%d7%a0%d7%98%d7%a1-%d7%92%d7%99%d7%a0%d7%92%d7%a8-%d7%91%d7%99%d7%a8/",
+            "score": 100,
+            "package_size_ml": null
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "1f3a3758-eb2b-4fbd-adeb-d70d275bb4ac",
+      "ingredient": "Havana Club Añejo 3 Años Rum",
+      "store_count": 4,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "רום הוואנה קלאב רום 3 שנים (Havana Club3YO)",
+            "price": 114.9,
+            "size_ml": 750.0,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%94%d7%95%d7%95%d7%90%d7%a0%d7%94-%d7%a7%d7%9c%d7%90%d7%91-%d7%a8%d7%95%d7%9d-3-%d7%a9%d7%a0%d7%99%d7%9d/",
+            "score": 100,
+            "package_size_ml": 750.0
+          }
+        ],
+        "בית היין": [
+          {
+            "product": "רום הוואנה קלאב 3 שנים",
+            "price": 125.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%94%d7%95%d7%95%d7%90%d7%a0%d7%94-%d7%a7%d7%9c%d7%90%d7%91-3-%d7%a9%d7%a0%d7%99%d7%9d/",
+            "score": 100,
+            "package_size_ml": 200.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "רום הוואנה קלאב 3 שנים 0.7 להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 116.0,
+            "size_ml": 700.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%a8%d7%95%d7%9d-%d7%94%d7%95%d7%95%d7%90%d7%a0%d7%94-%d7%a7%d7%9c%d7%90%d7%91-3-%d7%a9%d7%a0%d7%99%d7%9d-0-7/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "הוואנה קלאב 3 שנים",
+            "price": 169.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%94%d7%95%d7%95%d7%90%d7%a0%d7%94-%d7%a7%d7%9c%d7%90%d7%91-3-%d7%a9%d7%a0%d7%99%d7%9d/?StoreProductId=2788",
+            "score": 100,
+            "package_size_ml": 1000.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "93e9e9fe-f37f-4c8b-8a27-f9081bfa9420",
+      "ingredient": "Red Vermouth",
+      "store_count": 4,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "מולי ודטה 52 ורמוט רוסו רזרבה (Moli House of Drinks Vedetta 52 Rosso Riserva Vermou)",
+            "price": 239.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%9e%d7%95%d7%9c%d7%99-%d7%95%d7%93%d7%98%d7%94-52-%d7%95%d7%a8%d7%9e%d7%95%d7%98-%d7%a8%d7%95%d7%a1%d7%95-%d7%a8%d7%96%d7%a8%d7%91%d7%94-moli-house-of-drinks-vedetta-52-rosso-riserva-vermou/",
+            "score": 100,
+            "package_size_ml": 700.0
+          },
+          {
+            "product": "אפרוס ורמוט בלאק פורסט אדום (Apros Red Vermouth)",
+            "price": 119.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%90%d7%a4%d7%a8%d7%95%d7%a1-%d7%95%d7%a8%d7%9e%d7%95%d7%98-%d7%91%d7%9c%d7%90%d7%a7-%d7%a4%d7%95%d7%a8%d7%a1%d7%98-%d7%90%d7%93%d7%95%d7%9d-apros-red-vermouth/",
+            "score": 100,
+            "package_size_ml": 700.0
+          }
+        ],
+        "Free Spirits & Co": [
+          {
+            "product": "Vermouth Mancino Rosso",
+            "price": 119.0,
+            "size_ml": null,
+            "available": null,
+            "url": "https://freespiritsandco.co.il/product/vermouth-mancino-rosso/",
+            "score": 80,
+            "package_size_ml": 750.0
+          }
+        ],
+        "בית היין": [
+          {
+            "product": "נוילי פראט רוז' וורמוט אדום",
+            "price": 92.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%a0%d7%95%d7%99%d7%9c%d7%99-%d7%a4%d7%a8%d7%90%d7%98-%d7%a8%d7%95%d7%96-%d7%95%d7%95%d7%a8%d7%9e%d7%95%d7%98-%d7%90%d7%93%d7%95%d7%9d/",
+            "score": 100,
+            "package_size_ml": 250.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "וורמוט מרטיני רוסו ליטר להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 50.0,
+            "size_ml": 1000.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%95%d7%95%d7%a8%d7%9e%d7%95%d7%98-%d7%9e%d7%a8%d7%98%d7%99%d7%a0%d7%99-%d7%a8%d7%95%d7%a1%d7%95-%d7%9c%d7%99%d7%98%d7%a8/",
+            "score": 80,
+            "package_size_ml": 1000.0
+          }
+        ]
+      }
+    },
+    {
+      "ingredient_id": "912637ce-81d8-4d84-b792-774e9d3662b0",
+      "ingredient": "Sparkling Wine / Prosecco",
+      "store_count": 5,
+      "stores": {
+        "Alcohome": [
+          {
+            "product": "פסקווא פרוסקו רוזה (Pasqua Spumante Rose)",
+            "price": 59.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%a4%d7%a1%d7%a7%d7%95%d7%95%d7%90-%d7%a4%d7%a8%d7%95%d7%a1%d7%a7%d7%95-%d7%a8%d7%95%d7%96%d7%94-pasqua-spumante-rose/",
+            "score": 75,
+            "package_size_ml": 1000.0
+          },
+          {
+            "product": "קאוויקיולי פרוסקו ספומנטה (Cavicchioli prosecco)",
+            "price": 49.9,
+            "size_ml": null,
+            "available": true,
+            "url": "https://alcohome.co.il/product-page/%d7%a4%d7%a8%d7%95%d7%a1%d7%a7%d7%95-%d7%a1%d7%a4%d7%95%d7%9e%d7%a0%d7%98%d7%94-%d7%a7%d7%90%d7%95%d7%95%d7%a7%d7%99%d7%95%d7%9c%d7%99-cavicchioli-prosecco/",
+            "score": 75,
+            "package_size_ml": 100.0
+          }
+        ],
+        "בית היין": [
+          {
+            "product": "יין מבעבע לבן מתוק צינזנו אסטי",
+            "price": 60.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%99%d7%99%d7%9f-%d7%9e%d7%91%d7%a2%d7%91%d7%a2-%d7%9c%d7%91%d7%9f-%d7%9e%d7%aa%d7%95%d7%a7-%d7%a6%d7%99%d7%a0%d7%96%d7%a0%d7%95-%d7%90%d7%a1%d7%98%d7%99/",
+            "score": 100,
+            "package_size_ml": 750.0
+          },
+          {
+            "product": "יין מבעבע צינזנו דולצ'ה מתוק",
+            "price": 50.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://winehouse.co.il/product/%d7%99%d7%99%d7%9f-%d7%9e%d7%91%d7%a2%d7%91%d7%a2-%d7%a6%d7%99%d7%a0%d7%96%d7%a0%d7%95-%d7%93%d7%95%d7%9c%d7%a6%d7%94-%d7%9e%d7%aa%d7%95%d7%a7/",
+            "score": 100,
+            "package_size_ml": 750.0
+          }
+        ],
+        "דרך היין": [
+          {
+            "product": "פרוסקו גולד בוטגה 200 מ”ל",
+            "price": 24.9,
+            "size_ml": 200.0,
+            "available": null,
+            "url": "https://www.wineroute.co.il/product/%d7%a4%d7%a8%d7%95%d7%a1%d7%a7%d7%95-%d7%92%d7%95%d7%9c%d7%93-%d7%91%d7%95%d7%98%d7%92%d7%94-200-%d7%9e%d7%9c/",
+            "score": 75,
+            "package_size_ml": 200.0
+          }
+        ],
+        "עולם היין": [
+          {
+            "product": "מבעבע פרוסקו אקסטרא דריי מאסקיו דה קאבל להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 44.0,
+            "size_ml": 750.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%9e%d7%91%d7%a2%d7%91%d7%a2-%d7%a4%d7%a8%d7%95%d7%a1%d7%a7%d7%95-%d7%90%d7%a7%d7%a1%d7%98%d7%a8%d7%90-%d7%93%d7%a8%d7%99%d7%99-%d7%9e%d7%90%d7%a1%d7%a7%d7%99%d7%95-%d7%93%d7%94-%d7%a7%d7%90%d7%91/",
+            "score": 75,
+            "package_size_ml": 750.0
+          },
+          {
+            "product": "פאבולינו פרוסקו מבעבע יבש מאוד להזמנה אונליין במחיר משתלם עד אליך! | עולם היין",
+            "price": 44.0,
+            "size_ml": 750.0,
+            "available": true,
+            "url": "https://olamhayain.co.il/product/%d7%a4%d7%90%d7%91%d7%95%d7%9c%d7%99%d7%a0%d7%95-%d7%a4%d7%a8%d7%95%d7%a1%d7%a7%d7%95-%d7%9e%d7%91%d7%a2%d7%91%d7%a2-%d7%99%d7%91%d7%a9-%d7%9e%d7%90%d7%95%d7%93/",
+            "score": 75,
+            "package_size_ml": 750.0
+          }
+        ],
+        "משקאות המשמח": [
+          {
+            "product": "אלגרו למברוסקו- יין מבעבע חצי יבש",
+            "price": 35.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%90%d7%9c%d7%92%d7%a8%d7%95-%d7%9c%d7%9e%d7%91%d7%a8%d7%95%d7%a1%d7%a7%d7%95-%d7%99%d7%99%d7%9f-%d7%9e%d7%91%d7%a2%d7%91%d7%a2-%d7%97%d7%a6%d7%99-%d7%99%d7%91%d7%a9/?StoreProductId=2908",
+            "score": 100,
+            "package_size_ml": null
+          },
+          {
+            "product": "מיונטו פרוסקו יבש כשר",
+            "price": 49.0,
+            "size_ml": null,
+            "available": true,
+            "url": "https://www.hamesameach.co.il/product/%d7%9e%d7%99%d7%95%d7%a0%d7%98%d7%95-%d7%a4%d7%a8%d7%95%d7%a1%d7%a7%d7%95-%d7%99%d7%91%d7%a9-%d7%9b%d7%a9%d7%a8/",
+            "score": 75,
+            "package_size_ml": null
+          }
+        ]
+      }
+    }
+  ]
+}
