@@ -1,45 +1,84 @@
 # Happy Hour AI 🍸
 
-Plan a complete cocktail event with AI — from preferences and cocktail selection to quantities, preparation and shopping.
+An AI-assisted planning system for cocktail events — from understanding the event and choosing a menu to quantities, preparation, purchasing and cost comparison.
 
-Happy Hour AI combines an AI-guided planning experience with a deterministic calculation engine. The AI helps understand the event and recommend cocktails; the backend handles quantities, product mappings and cost calculations.
+**Live demo:** https://happy-hour-ai-beta.vercel.app
 
-## Built for
+No installation is required to try the live demo. The local setup below is intended for developers.
 
-- HR & People teams
-- Office managers
-- Event planners
-- Private hosts
-- Bars and hospitality teams
-- Anyone planning a cocktail event
+## What problem does it solve?
 
-## What it does
+Planning a cocktail event usually means moving between recipes, spreadsheets, supplier websites and manual calculations.
 
-- Guided AI event creation
+Happy Hour AI brings that workflow into one system:
+
+- Define the event, guests, budget and preferences
+- Get AI-assisted cocktail recommendations
+- Calculate exact ingredient quantities
+- Convert recipe requirements into whole purchasable packages
+- Compare available products and retailers
+- Replace missing or expensive products with alternatives
+- Build a shopping plan
+- Generate preparation and batching instructions
+- Calculate equipment requirements
+- Estimate the total event cost
+
+## AI + deterministic engine
+
+The system deliberately separates AI reasoning from business calculations.
+
+The **LLM handles:**
+
+- Understanding the event
+- Asking useful planning questions
 - Cocktail recommendations
-- Ingredient quantity calculations
-- Shopping lists
-- Retailer and supplier comparison
-- Cost estimates
-- Preparation and batching instructions
-- Equipment requirements
-- Direct links to retailer product and search pages
+- Planning guidance
+- Natural-language interaction
+
+The **deterministic Python engine handles:**
+
+- Quantities
+- Bottle/package rounding
+- Ingredient allocation
+- Product mappings
+- Shopping quantities
+- Costs
+- Supplier comparisons
+
+The LLM never calculates the final quantities or prices.
+
+This keeps the numerical output reproducible and prevents AI hallucinations from changing event calculations.
 
 ## Architecture
 
-- Next.js frontend
-- FastAPI backend
-- PostgreSQL database
-- Docker Compose
-- Alembic migrations
+### Frontend
+- Next.js
+- TypeScript
+- React
 
-The LLM is used for guidance and recommendations.
+### Backend
+- FastAPI
+- Python
+- SQLAlchemy
+- Alembic
 
-Quantity and cost calculations are deterministic and are not performed by the LLM.
+### Data
+- PostgreSQL
+- Neon PostgreSQL for the hosted demo
+
+### AI
+- Groq / OpenAI-compatible LLM integration
+- Tool-calling agent connected to deterministic backend functions
+- Public demo AI usage is rate-limited
+
+### Deployment
+- Frontend: Vercel
+- API: Render
+- Database: Neon
 
 ## Public dataset
 
-The repository includes a sanitized public dataset with:
+The repository includes a sanitized public dataset containing:
 
 - 30 classic cocktails
 - 54 ingredients
@@ -47,20 +86,63 @@ The repository includes a sanitized public dataset with:
 - 14 suppliers / retailers
 - 102 supplier product listings
 
-Retailer prices are a snapshot of publicly available pricing and may change. Verify current prices on the retailer website before purchasing.
+The dataset includes public product information and public retailer pricing snapshots.
 
-Private business records, customer information and private source spreadsheets are not included.
+Retailer prices may change. Always verify the current price and availability on the retailer website before purchasing.
 
-## Quick start
+Private business records, customers, historical events, private contacts and original private source spreadsheets are not included.
 
-Requirements:
+## Key product flows
+
+### Event Builder
+
+Create an event manually or with AI assistance.
+
+The planner can capture:
+
+- Guest count
+- Budget
+- Duration
+- Event type
+- Location
+- Cocktail preferences
+- Menu size
+
+### Menu
+
+Select cocktails and allocations for the event.
+
+### Quantities
+
+The calculation engine converts recipes into the exact amount required for the event and then into purchasable package quantities.
+
+### Product alternatives
+
+Each ingredient can be compared against other mapped products.
+
+Alternatives are ranked using the **total cost for the event**, not simply the shelf price of one bottle.
+
+### Buy & Compare
+
+The shopping workflow combines event requirements with available retailer listings and purchase destinations.
+
+### Prep
+
+The system generates preparation and batching information based on the calculated event.
+
+## Local development
+
+### Requirements
 
 - Git
 - Docker Desktop
 
-Run:
+Clone the repository and create the backend environment file:
 
     cp .env.example backend/.env
+
+Start the stack:
+
     docker compose up --build -d
 
 Then open:
@@ -80,14 +162,9 @@ Example:
     LLM_PROVIDER=groq
     LLM_API_KEY=your_key_here
 
-Supported providers:
-
-- Groq
-- Anthropic
-- Gemini
-- OpenRouter
-
 Never commit a real API key.
+
+The repository contains `.env.example` with safe placeholder values.
 
 ## Reset the public database
 
@@ -95,17 +172,38 @@ Run:
 
     ./reset.sh
 
-The database is rebuilt from:
+The public database is rebuilt from:
 
     backend/scripts/public_data/public_seed.json
 
 ## Testing
 
-Backend tests:
+Backend:
 
     cd backend
     source venv/bin/activate
     pytest -q
+
+Frontend production build:
+
+    cd frontend
+    npm run build
+
+## API
+
+Hosted API documentation:
+
+https://happy-hour-ai.onrender.com/docs
+
+Health endpoint:
+
+https://happy-hour-ai.onrender.com/api/health
+
+## Project principle
+
+> AI should help make decisions — not invent the numbers.
+
+Happy Hour AI uses AI where language and recommendations are useful, while keeping quantities, pricing and purchasing logic deterministic.
 
 ## License
 
