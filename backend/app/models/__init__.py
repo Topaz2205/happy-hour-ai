@@ -7,6 +7,7 @@ from .event import (
     EventIngredientProductOverride, EventMessage,
 )
 from .company import Company
+from .user import User, CompanyMembership, UsageCounter
 
 __all__ = [
     "Cocktail", "CocktailIngredient",
@@ -15,5 +16,5 @@ __all__ = [
     "Supplier", "SupplierProduct",
     "Event", "EventMenuItem", "EventRequirement", "EventPurchaseItem",
     "EventIngredientProductOverride", "EventMessage",
-    "Company",
+    "Company", "User", "CompanyMembership", "UsageCounter",
 ]

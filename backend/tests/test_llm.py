@@ -173,6 +173,14 @@ class TestPresets:
                    for n, p in PRESETS.items() if n != "anthropic")
 
 
+def _authorised_event():
+    import uuid
+    from types import SimpleNamespace
+    from app.core.auth import EventAccess
+    uid = uuid.uuid4()
+    return SimpleNamespace(id=uid), EventAccess(event_id=uid, ctx=None)
+
+
 class TestToolFailureIsRecoverable:
     """
     A model that gets a tool's arguments wrong must be told so, not crash the
@@ -194,7 +202,9 @@ class TestToolFailureIsRecoverable:
         # test now uses a tool that still has a genuinely required argument,
         # because the behaviour being checked is recovery, not that particular
         # tool.
-        out = asyncio.run(dispatch_tool("get_cocktail_details", {}, None, db))
+        # Tools now also require proof that the request may act on the event.
+        event, access = _authorised_event()
+        out = asyncio.run(dispatch_tool("get_cocktail_details", {}, event, db, access))
 
         assert isinstance(out, dict) and "error" in out
         assert "KeyError" in out["error"]
@@ -209,5 +219,6 @@ class TestToolFailureIsRecoverable:
         from unittest.mock import AsyncMock
         from app.api.agent import dispatch_tool
 
-        out = asyncio.run(dispatch_tool("make_me_a_sandwich", {}, None, AsyncMock()))
+        event, access = _authorised_event()
+        out = asyncio.run(dispatch_tool("make_me_a_sandwich", {}, event, AsyncMock(), access))
         assert "Unknown tool" in out["error"]

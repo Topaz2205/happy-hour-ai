@@ -3,7 +3,6 @@
 import {
   useCallback,
   useEffect,
-  useMemo,
   useState,
 } from "react";
 
@@ -34,7 +33,6 @@ import {
 } from "@/components/ui";
 
 
-const STATS_SAMPLE = 100;
 const RECENT_SHOWN = 6;
 
 
@@ -45,20 +43,31 @@ export default function Home() {
   const [total, setTotal] =
     useState<number | null>(null);
 
+  // Dashboard figures come from the server, computed over every event in the
+  // signed-in workspace — not from a sample of the list on the client.
+  const [stats, setStats] =
+    useState<{ costed: number; drafts: number; avg: number | null } | null>(null);
+
 
   const load = useCallback(
     async () => {
       try {
-        const res =
-          await api.listEvents(
-            STATS_SAMPLE
-          );
+        const [res, s] = await Promise.all([
+          api.listEvents(RECENT_SHOWN),
+          api.getStats(),
+        ]);
 
         setEvents(res.items);
-        setTotal(res.count);
+        setTotal(s.events);
+        setStats({
+          costed: s.costed,
+          drafts: s.drafts,
+          avg: s.avg_budget != null ? Math.round(s.avg_budget) : null,
+        });
       } catch {
         setEvents([]);
         setTotal(null);
+        setStats(null);
       }
     },
     []
@@ -68,53 +77,6 @@ export default function Home() {
   useEffect(() => {
     load();
   }, [load]);
-
-
-  const stats = useMemo(() => {
-    if (!events) return null;
-
-    const costed =
-      events.filter(
-        (event) =>
-          event.estimated_cost != null &&
-          !event.cost_is_partial
-      );
-
-    const drafts =
-      events.filter(
-        (event) =>
-          event.menu_count === 0 ||
-          event.estimated_cost == null
-      );
-
-    const budgets =
-      events
-        .filter(
-          (event) =>
-            event.budget != null
-        )
-        .map(
-          (event) =>
-            event.budget as number
-        );
-
-    const avg =
-      budgets.length
-        ? Math.round(
-            budgets.reduce(
-              (sum, value) =>
-                sum + value,
-              0
-            ) / budgets.length
-          )
-        : null;
-
-    return {
-      costed: costed.length,
-      drafts: drafts.length,
-      avg,
-    };
-  }, [events]);
 
 
   const recent =
@@ -261,7 +223,7 @@ export default function Home() {
             <EmptyState
               icon={CalendarDays}
               title="No events yet."
-              body="Create your first event and Happy Hour AI will guide you through the setup."
+              body="Create your first event and Happy Hour Cocktails AI will guide you through the setup."
             />
 
           </div>

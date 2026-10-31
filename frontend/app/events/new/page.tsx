@@ -377,7 +377,7 @@ export default function NewEventPage() {
         setError(
           err instanceof Error
             ? err.message
-            : "Happy Hour AI could not build the cocktail menu."
+            : "Happy Hour Cocktails AI could not build the cocktail menu."
         );
       } finally {
         setMenuBusy(false);
@@ -507,7 +507,7 @@ ${userMessage}
       setError(
         err instanceof Error
           ? err.message
-          : "Happy Hour AI could not respond."
+          : "Happy Hour Cocktails AI could not respond."
       );
     } finally {
       setBusy(false);
@@ -548,7 +548,7 @@ ${userMessage}
 
     if (result.recommended_cocktails.length !== count) {
       throw new Error(
-        "Happy Hour AI could not build a complete menu yet. " +
+        "Happy Hour Cocktails AI could not build a complete menu yet. " +
           "Go back to Cocktail style and add a little more direction."
       );
     }
@@ -657,7 +657,7 @@ Requirements:
 
       if (!replacement) {
         throw new Error(
-          "Happy Hour AI could not find a different cocktail. Try asking for a specific taste or style."
+          "Happy Hour Cocktails AI could not find a different cocktail. Try asking for a specific taste or style."
         );
       }
 
@@ -801,7 +801,7 @@ Requirements:
             ? 1 - allocation * (validSelected.length - 1)
             : allocation,
         ai_rationale:
-          "Selected by Happy Hour AI during guided event setup.",
+          "Selected by Happy Hour Cocktails AI during guided event setup.",
       }));
 
       await api.setMenu(created.id, menu);
@@ -845,7 +845,7 @@ Requirements:
       <header className="mb-7">
         <div className="inline-flex items-center gap-1.5 rounded-full border border-accent-line bg-accent-soft px-2.5 py-1 text-[11px] font-medium text-accent mb-2.5">
           <Sparkles size={11} />
-          Guided by Happy Hour AI
+          Guided by Happy Hour Cocktails AI
         </div>
 
         <h1 className="text-[30px] font-semibold tracking-[-.025em] text-ink">
@@ -854,7 +854,7 @@ Requirements:
 
         <p className="mt-2 max-w-[650px] text-[14px] leading-relaxed text-ink-3">
           We’ll go through the event one decision at a time.
-          You can ask Happy Hour AI for help at any step.
+          You can ask Happy Hour Cocktails AI for help at any step.
         </p>
       </header>
 
@@ -1066,7 +1066,7 @@ Requirements:
                 </h2>
 
                 <p className="mt-2 text-[13px] leading-relaxed text-ink-3">
-                  Happy Hour AI selected this cocktail using your event
+                  Happy Hour Cocktails AI selected this cocktail using your event
                   details and cocktail preferences. Keep it, replace it,
                   or ask the AI to adjust this choice.
                 </p>
@@ -1261,7 +1261,7 @@ Requirements:
 
                 <div>
                   <div className="text-[13.5px] font-semibold text-ink">
-                    Happy Hour AI
+                    Happy Hour Cocktails AI
                   </div>
 
                   <div className="text-[11px] text-ink-4">

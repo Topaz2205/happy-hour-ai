@@ -112,7 +112,7 @@ export default function AgentSidePanel({
       <header className="flex items-center justify-between gap-2 px-4 h-14 border-b border-line shrink-0">
         <div className="flex items-center gap-2">
           <Sparkles size={15} strokeWidth={1.75} className="text-accent" />
-          <span className="text-[13.5px] font-medium">Happy Hour AI</span>
+          <span className="text-[13.5px] font-medium">Happy Hour Cocktails AI</span>
         </div>
         <button
           onClick={() => onOpenChange(false)}

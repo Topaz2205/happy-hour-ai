@@ -34,8 +34,7 @@ export default function SuppliersPage() {
   useEffect(() => {
     if (!active) return;
     setProducts(null);
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/api/suppliers/${active}/products`)
-      .then((r) => r.json())
+    api.getSupplierProducts<{ products?: Product[]; items?: Product[] }>(active)
       .then((d) => setProducts(d.products ?? d.items ?? []))
       .catch(() => setProducts([]));
   }, [active]);

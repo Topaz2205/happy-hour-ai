@@ -1,17 +1,37 @@
 /**
- * Happy Hour AI — API Client
+ * Happy Hour Cocktails AI — API Client
  * All data fetching goes through these typed functions.
  */
 
+import { clearToken, getToken, redirectToLogin } from "@/lib/auth";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+const AI_PATHS = ["/api/agent/chat", "/api/event-builder/advice"];
+
+/** Thrown for any non-2xx response; `status` lets callers tell 429 from 404. */
+export class ApiError extends Error {
+  status: number;
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
+  }
+}
 
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   let res: Response;
 
+  const token = getToken();
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...((options?.headers as Record<string, string> | undefined) ?? {}),
+  };
+  if (token) headers.Authorization = `Bearer ${token}`;
+
   try {
     res = await fetch(`${API_URL}${path}`, {
-      headers: { "Content-Type": "application/json" },
       ...options,
+      headers,
     });
   } catch {
     // fetch() only rejects on a transport-level failure — the API process is
@@ -25,16 +45,62 @@ async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
     );
   }
 
+  // AI calls change the remaining daily quota shown in the sidebar.
+  if (AI_PATHS.some((p) => path.startsWith(p)) && typeof window !== "undefined") {
+    window.dispatchEvent(new Event("hh-auth-changed"));
+  }
+
   if (!res.ok) {
     const err = await res.json().catch(() => null);
+    // An expired or missing session: drop it and go to sign-in. Sign-in and
+    // sign-up themselves report a 401 as a normal error instead.
+    if (res.status === 401 && !path.startsWith("/api/auth/")) {
+      clearToken();
+      redirectToLogin();
+    }
     const detail =
       (err && (err.detail || err.message)) || `${res.status} ${res.statusText}`;
-    throw new Error(typeof detail === "string" ? detail : JSON.stringify(detail));
+    const message =
+      typeof detail === "string"
+        ? detail
+        : Array.isArray(detail) && detail[0]?.msg
+          ? String(detail[0].msg).replace(/^Value error, /, "")
+          : JSON.stringify(detail);
+    throw new ApiError(message, res.status);
   }
 
   // 204 and friends carry no body
   if (res.status === 204) return undefined as T;
   return res.json();
+}
+
+// ── Session ────────────────────────────────────────────────────────────────
+
+export interface AiUsage {
+  used: number;
+  limit: number;
+  remaining: number;
+  resets?: string;
+}
+
+export interface SessionInfo {
+  user: { id: string; email: string; display_name: string | null; is_admin: boolean };
+  workspace: { id: string; name: string; is_personal: boolean; role: string };
+  workspaces: { id: string; name: string; role: string; is_personal: boolean }[];
+  ai_usage: AiUsage;
+}
+
+export interface AuthResponse extends SessionInfo {
+  access_token: string;
+  token_type: "bearer";
+  expires_at: string;
+}
+
+export interface WorkspaceStats {
+  events: number;
+  costed: number;
+  drafts: number;
+  avg_budget: number | null;
 }
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -305,6 +371,19 @@ export const api = {
       method: "POST",
       body: JSON.stringify(data),
     }),
+  // Auth
+  signup: (data: { email: string; password: string; display_name?: string }) =>
+    apiFetch<AuthResponse>("/api/auth/signup", { method: "POST", body: JSON.stringify(data) }),
+  login: (data: { email: string; password: string }) =>
+    apiFetch<AuthResponse>("/api/auth/login", { method: "POST", body: JSON.stringify(data) }),
+  me: () => apiFetch<SessionInfo>("/api/auth/me"),
+
+  // Dashboard figures for the signed-in workspace, computed by the server.
+  getStats: () => apiFetch<WorkspaceStats>("/api/events/stats"),
+
+  getSupplierProducts: <T = unknown>(supplierId: string) =>
+    apiFetch<T>(`/api/suppliers/${supplierId}/products`),
+
   listEvents: (limit = 50) =>
     apiFetch<{ count: number; items: EventListItem[] }>(`/api/events?limit=${limit}`),
   getEvent: (id: string) => apiFetch<Event>(`/api/events/${id}`),
@@ -420,7 +499,7 @@ export const api = {
     messages: { role: string; content: string }[],
     currentTab?: string,
   ) =>
-    apiFetch<{ response: string; event_status: string; iterations: number }>("/api/agent/chat", {
+    apiFetch<{ response: string; event_status: string; iterations: number; ai_usage?: AiUsage }>("/api/agent/chat", {
       method: "POST",
       body: JSON.stringify({ event_id: eventId, messages, current_tab: currentTab }),
     }),
@@ -448,6 +527,7 @@ export const api = {
       ready_to_create: boolean;
       provider: string;
       model: string;
+      ai_usage?: AiUsage;
     }>("/api/event-builder/advice", {
       method: "POST",
       body: JSON.stringify(data),

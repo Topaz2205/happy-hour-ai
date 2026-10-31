@@ -167,7 +167,7 @@ export default function PrepSheetPage() {
 
       <footer className="mt-9 pt-4 border-t border-line text-[11.5px] text-ink-4">
         Bottle counts are rounded up to whole bottles. Quantities include the
-        event&apos;s waste buffer. Prepared with Happy Hour AI.
+        event&apos;s waste buffer. Prepared with Happy Hour Cocktails AI.
       </footer>
     </main>
   );

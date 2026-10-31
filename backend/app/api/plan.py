@@ -22,6 +22,7 @@ from sqlalchemy.orm import selectinload
 
 from app.core.config import settings
 from app.db.session import get_db
+from app.core.auth import AuthContext, get_auth_context
 from app.models import (
     Event, EventMenuItem, EventRequirement, EventPurchaseItem,
     Cocktail, CocktailIngredient, Ingredient,
@@ -189,8 +190,12 @@ def _sanity_warnings(purchase_items, total_cost: float | None) -> list[str]:
 
 
 @router.post("", status_code=201)
-async def create_plan(body: PlanRequest, db: AsyncSession = Depends(get_db)):
-    """Description in, complete costed plan out."""
+async def create_plan(
+    body: PlanRequest,
+    db: AsyncSession = Depends(get_db),
+    ctx: AuthContext = Depends(get_auth_context),
+):
+    """Description in, complete costed plan out — created in the caller's workspace."""
     retailer_key = body.retailer or DEFAULT_RETAILER_KEY
     if retailer_key not in RETAILERS:
         raise HTTPException(status_code=400, detail=f"Unknown retailer '{retailer_key}'")
@@ -229,6 +234,7 @@ async def create_plan(body: PlanRequest, db: AsyncSession = Depends(get_db)):
 
     # ── Create the event ──────────────────────────────────────────────────────
     event = Event(
+        company_id=ctx.workspace_id,
         name=body.event_name or _derive_name(parsed.guests),
         guest_count=parsed.guests,
         budget=parsed.budget,

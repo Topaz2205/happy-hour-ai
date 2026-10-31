@@ -1,5 +1,5 @@
 """
-Happy Hour AI — multi-store catalog scanner.
+Happy Hour Cocktails AI — multi-store catalog scanner.
 
 FIRST STAGE:
 - Reads every real retailer from the DB.

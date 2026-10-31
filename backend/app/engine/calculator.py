@@ -1,5 +1,5 @@
 """
-Happy Hour AI — Deterministic Calculation Engine
+Happy Hour Cocktails AI — Deterministic Calculation Engine
 =================================================
 All quantity and cost calculations happen here.
 The Claude AI agent calls tools that invoke this module.

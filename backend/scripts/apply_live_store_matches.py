@@ -1,5 +1,5 @@
 """
-Happy Hour AI — import verified live retail matches.
+Happy Hour Cocktails AI — import verified live retail matches.
 
 Input:
     data/relevant_store_matches_ready.json

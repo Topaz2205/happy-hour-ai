@@ -1,5 +1,5 @@
 """
-Happy Hour AI — store catalog probe.
+Happy Hour Cocktails AI — store catalog probe.
 
 Discovers product URLs through:
 1. product sitemap

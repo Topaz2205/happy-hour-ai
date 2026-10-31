@@ -6,29 +6,49 @@ __pycache__/
 *.py[cod]
 backend/venv/
 backend/.venv/
+.venv/
 .pytest_cache/
+.coverage
+htmlcov/
 
 # Node / Next.js
-frontend/node_modules/
+node_modules/
 frontend/.next/
 frontend/out/
+*.tsbuildinfo
 
-# Environment / secrets
+# ── Environment / secrets ─────────────────────────────────────────────
+# Real values live only in backend/.env locally and in the Render / Vercel
+# dashboards in production. Only the placeholder .env.example is committed.
 .env
 .env.*
 !.env.example
-backend/.env
-frontend/.env.local
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+credentials*.json
+service-account*.json
+
+# Hosting CLIs (can contain project tokens / env pulls)
+.vercel/
+.render/
+.netlify/
 
 # Logs
 *.log
 
-# Temporary backups we created while editing
+# Temporary backups created while editing
 *.backup
 *.before-*
 
 # Local databases
 *.db
+*.db-journal
 *.sqlite
 *.sqlite3
 
@@ -36,13 +56,14 @@ frontend/.env.local
 *.tar.gz
 *.zip
 
-# Python caches
-__pycache__/
-*.pyc
-
 # Test/temp files
 tmp_*
 test_import*.db
 
-# Private business source workbooks
+# Private business source workbooks and raw imports
 backend/scripts/data/*.xlsx
+backend/data/imports/
+
+# Video build output and caches
+video/out/
+video/.cache/

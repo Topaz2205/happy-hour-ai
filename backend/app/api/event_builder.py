@@ -7,7 +7,8 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
-from app.services.ai_rate_limit import enforce_ai_rate_limit
+from app.core.auth import AuthContext, get_auth_context
+from app.services import usage
 from app.db.session import get_db
 from app.models import Cocktail
 from app.services.llm import Message, OpenAICompatProvider, PRESETS
@@ -24,7 +25,10 @@ class BuilderTurn(BaseModel):
 class BuilderRequest(BaseModel):
     message: str = Field(..., min_length=1, max_length=2500)
     draft: dict[str, Any] = Field(default_factory=dict)
-    history: list[BuilderTurn] = Field(default_factory=list)
+    history: list[BuilderTurn] = Field(default_factory=list, max_length=40)
+
+
+_MAX_DRAFT_CHARS = 6000
 
 
 class BuilderUpdates(BaseModel):
@@ -72,8 +76,11 @@ async def event_builder_advice(
     body: BuilderRequest,
     request: Request,
     db: AsyncSession = Depends(get_db),
+    ctx: AuthContext = Depends(get_auth_context),
 ):
-    enforce_ai_rate_limit(request)
+    # The draft is pasted into the system prompt, so keep it small and plain.
+    if len(json.dumps(body.draft, ensure_ascii=False)) > _MAX_DRAFT_CHARS:
+        raise HTTPException(status_code=413, detail="The event draft is too large.")
 
     provider_name = settings.LLM_PROVIDER
 
@@ -128,7 +135,7 @@ async def event_builder_advice(
     ]
 
     system = f"""
-You are Happy Hour AI, an expert event-planning assistant.
+You are Happy Hour Cocktails AI, an expert event-planning assistant.
 
 You are working BEFORE an Event record is created.
 
@@ -281,24 +288,30 @@ inside recommended_cocktails.
         )
     )
 
+    # Counted only now, after every free check has passed; refunded below if
+    # the provider never answers.
+    ticket = await usage.consume_ai_request(ctx.user_id)
+
     try:
         reply = await provider.chat(
             system=system,
             messages=messages,
             tools=[],
         )
-    except Exception as exc:
+    except Exception:
+        await usage.refund(ticket)
         raise HTTPException(
             status_code=502,
-            detail=f"Happy Hour AI could not respond: {exc}",
+            detail="Happy Hour Cocktails AI could not respond right now. Please try again.",
         )
 
     try:
         data = extract_json(reply.text)
     except Exception:
+        await usage.refund(ticket)
         raise HTTPException(
             status_code=502,
-            detail="Happy Hour AI returned an invalid response.",
+            detail="Happy Hour Cocktails AI returned an invalid response.",
         )
 
     try:
@@ -360,4 +373,6 @@ inside recommended_cocktails.
         ),
         "provider": provider_name,
         "model": settings.resolved_llm_model,
+        "ai_usage": {"used": ticket.used, "limit": ticket.limit,
+                     "remaining": max(0, ticket.limit - ticket.used)},
     }

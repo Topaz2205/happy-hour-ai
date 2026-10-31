@@ -1,5 +1,5 @@
 """
-Happy Hour AI — targeted live product matcher.
+Happy Hour Cocktails AI — targeted live product matcher.
 
 Searches only products needed by active cocktails across the
 7 stores we can read.

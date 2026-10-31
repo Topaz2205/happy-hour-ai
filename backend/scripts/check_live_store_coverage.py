@@ -1,5 +1,5 @@
 """
-Happy Hour AI — live store coverage check.
+Happy Hour Cocktails AI — live store coverage check.
 
 Goal:
 For every ingredient used by an active cocktail, check whether the

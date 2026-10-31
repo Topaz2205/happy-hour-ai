@@ -1,5 +1,5 @@
 """
-Happy Hour AI — enrich missing package sizes.
+Happy Hour Cocktails AI — enrich missing package sizes.
 
 Reads:
     data/relevant_store_matches_clean.json

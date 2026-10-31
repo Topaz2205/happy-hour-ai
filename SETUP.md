@@ -1,6 +1,6 @@
-# Happy Hour AI — Developer Setup
+# Happy Hour Cocktails AI — Developer Setup
 
-This guide is for developers who want to run Happy Hour AI locally.
+This guide is for developers who want to run Happy Hour Cocktails AI locally.
 
 End users do not need Docker, Git or an API key. They use the hosted web application.
 
@@ -40,6 +40,16 @@ Example:
     LLM_API_KEY=your_key_here
 
 Never commit a real API key.
+
+## Accounts
+
+Open http://localhost:3000 and create an account — each account gets its own
+private workspace. `./setup.sh` generates a local `AUTH_SECRET_KEY` in
+`backend/.env` so sign-ins survive restarts.
+
+To edit the shared catalogue (mappings, prices) locally, make yourself an admin:
+
+    docker compose exec backend python scripts/set_admin.py --email you@example.com
 
 ## Public data
 

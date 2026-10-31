@@ -17,6 +17,12 @@ from app.services.module1_recipes import get_recipes
 from app.services.module3_matching import to_engine_inputs
 
 from app.db.session import get_db
+from app.core.auth import (
+    AuthContext,
+    EventAccess,
+    get_auth_context,
+    require_event_access,
+)
 from app.models import (
     EventIngredientProductOverride,
     EventMessage,
@@ -131,32 +137,6 @@ class SetMenuRequest(BaseModel):
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
-
-
-async def _fetch_or_create_company(
-    db: AsyncSession,
-    name: str,
-) -> Company:
-
-    result = await db.execute(
-        select(Company).where(
-            Company.name == name
-        )
-    )
-
-    company = result.scalar_one_or_none()
-
-    if company is None:
-
-        company = Company(
-            name=name
-        )
-
-        db.add(company)
-
-        await db.flush()
-
-    return company
 
 
 async def _build_engine_inputs(
@@ -316,19 +296,15 @@ async def _build_engine_inputs(
 async def create_event(
     body: CreateEventRequest,
     db: AsyncSession = Depends(get_db),
+    ctx: AuthContext = Depends(get_auth_context),
 ):
-    """Create a new event draft."""
+    """
+    Create a new event draft in the caller's workspace.
 
-    company_id = None
-
-    if body.company_name:
-
-        company = await _fetch_or_create_company(
-            db,
-            body.company_name,
-        )
-
-        company_id = company.id
+    Ownership comes from the authenticated context only. `company_name` in the
+    body is the client the event is for — display text, never a tenant — and
+    any company_id/workspace field a client adds is ignored by the schema.
+    """
 
     event_date = None
 
@@ -353,7 +329,12 @@ async def create_event(
             )
 
     event = Event(
-        company_id=company_id,
+        company_id=ctx.workspace_id,
+        client_company_name=(
+            body.company_name.strip()[:255]
+            if body.company_name
+            else None
+        ),
         name=body.name,
         event_date=event_date,
         location=body.location,
@@ -391,15 +372,21 @@ async def create_event(
 async def list_events(
     limit: int = 50,
     db: AsyncSession = Depends(get_db),
+    ctx: AuthContext = Depends(get_auth_context),
 ):
     """
-    Every event, newest first, with just enough to render a list row.
+    The workspace's events, newest first, with just enough to render a list row.
 
     Estimated cost comes from saved purchase items.
     """
 
+    limit = max(1, min(limit, 200))
+
     result = await db.execute(
         select(Event)
+        .where(
+            Event.company_id == ctx.workspace_id
+        )
         .order_by(
             Event.created_at.desc()
         )
@@ -546,11 +533,97 @@ async def list_events(
     }
 
 
+@router.get("/stats")
+async def workspace_stats(
+    db: AsyncSession = Depends(get_db),
+    ctx: AuthContext = Depends(get_auth_context),
+):
+    """
+    Dashboard figures for the caller's workspace only, computed over all of
+    its events (not a sample).
+
+        events   every event in the workspace
+        costed   has saved purchase lines and none is unpriced
+        drafts   no menu yet, or never costed
+        avg_budget  mean budget across events that have one
+    """
+
+    ws = ctx.workspace_id
+
+    events = (
+        await db.execute(
+            select(Event.id, Event.budget)
+            .where(Event.company_id == ws)
+        )
+    ).all()
+
+    ids = [row[0] for row in events]
+
+    if not ids:
+        return {
+            "events": 0,
+            "costed": 0,
+            "drafts": 0,
+            "avg_budget": None,
+        }
+
+    with_menu = set(
+        (
+            await db.execute(
+                select(EventMenuItem.event_id)
+                .where(EventMenuItem.event_id.in_(ids))
+                .distinct()
+            )
+        ).scalars().all()
+    )
+
+    priced = {
+        row[0]: (row[1], row[2])
+        for row in (
+            await db.execute(
+                select(
+                    EventPurchaseItem.event_id,
+                    func.count(),
+                    func.count().filter(
+                        EventPurchaseItem.total_price.is_(None)
+                    ),
+                )
+                .where(EventPurchaseItem.event_id.in_(ids))
+                .group_by(EventPurchaseItem.event_id)
+            )
+        ).all()
+    }
+
+    costed = sum(
+        1
+        for eid in ids
+        if eid in priced and priced[eid][0] > 0 and priced[eid][1] == 0
+    )
+    drafts = sum(
+        1
+        for eid in ids
+        if eid not in with_menu or eid not in priced
+    )
+    budgets = [float(b) for _, b in events if b is not None]
+
+    return {
+        "events": len(ids),
+        "costed": costed,
+        "drafts": drafts,
+        "avg_budget": (
+            round(sum(budgets) / len(budgets), 2)
+            if budgets
+            else None
+        ),
+    }
+
+
 @router.patch("/{event_id}")
 async def update_event(
     event_id: str,
     body: UpdateEventRequest,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """Update the editable event details."""
     try:
@@ -629,7 +702,7 @@ async def update_event(
         ).first()
 
         if menu_exists:
-            await _recalculate(uid, db)
+            await _recalculate(uid, db, access)
         else:
             await db.commit()
     else:
@@ -658,6 +731,7 @@ async def update_event(
 async def delete_event(
     event_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """Permanently delete one event and its event-scoped data."""
     try:
@@ -707,6 +781,7 @@ async def delete_event(
 async def get_event(
     event_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """Get event details and current menu."""
 
@@ -833,6 +908,7 @@ async def set_menu(
     event_id: str,
     body: SetMenuRequest,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """Set cocktail menu for event."""
 
@@ -1011,6 +1087,7 @@ async def set_menu(
 async def calculate(
     event_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Run deterministic calculation engine.
@@ -1286,6 +1363,7 @@ async def calculate(
 async def shopping_list(
     event_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """Return purchase list for event."""
 
@@ -1445,6 +1523,7 @@ async def purchase_plan(
     event_id: str,
     retailer: str | None = None,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Shopping list arranged by shop.
@@ -1883,6 +1962,7 @@ def _order_line(
 async def cost_summary(
     event_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """Return event cost summary."""
 
@@ -2265,6 +2345,7 @@ def _format_calc_result(
 async def get_prep_sheet(
     event_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Operational prep sheet for an event.
@@ -2514,14 +2595,22 @@ async def get_prep_sheet(
 async def _recalculate(
     event_id: uuid.UUID,
     db: AsyncSession,
+    access: EventAccess,
 ) -> None:
     """
     Re-run the engine after product changes.
+
+    Only ever called from a handler that already holds an EventAccess for this
+    event; the proof is passed on rather than re-derived.
     """
+
+    if access.event_id != event_id:
+        raise HTTPException(status_code=404, detail="Event not found")
 
     await calculate(
         str(event_id),
         db,
+        access=access,
     )
 
 
@@ -2910,6 +2999,7 @@ async def list_ingredient_alternatives(
     event_id: str,
     ingredient_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Alternative products for ingredient.
@@ -2970,6 +3060,7 @@ async def set_event_product(
     ingredient_id: str,
     body: ProductOverrideIn,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Choose product for this event only.
@@ -3087,6 +3178,7 @@ async def set_event_product(
     await _recalculate(
         uid,
         db,
+        access,
     )
 
     return await _alternatives_for(
@@ -3104,6 +3196,7 @@ async def clear_event_product(
     event_id: str,
     ingredient_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Return to house recommendation.
@@ -3170,6 +3263,7 @@ async def clear_event_product(
         await _recalculate(
             uid,
             db,
+            access,
         )
 
     return await _alternatives_for(
@@ -3183,6 +3277,7 @@ async def clear_event_product(
 async def list_event_overrides(
     event_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Event-specific product overrides.
@@ -3278,6 +3373,7 @@ async def build_batch(
     cocktail_id: str,
     servings: int = 20,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Scale one cocktail to N servings.
@@ -3387,6 +3483,7 @@ async def list_event_messages(
     event_id: str,
     limit: int = 50,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Event conversation.
@@ -3459,6 +3556,7 @@ async def list_event_messages(
 async def clear_event_messages(
     event_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Clear event conversation.
@@ -3509,6 +3607,7 @@ async def clear_event_messages(
 async def compare_shops(
     event_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Compare whole-event baskets between shops.
@@ -4371,6 +4470,7 @@ async def compare_shops(
 async def get_equipment_shop(
     event_id: str,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Cocktail/bar equipment available to buy.
@@ -4571,6 +4671,7 @@ async def set_workshop(
     event_id: str,
     body: WorkshopSettings,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Set workshop mode.
@@ -4656,6 +4757,7 @@ async def get_equipment(
     event_id: str,
     people_per_station: int | None = None,
     db: AsyncSession = Depends(get_db),
+    access: EventAccess = Depends(require_event_access),
 ):
     """
     Workshop equipment calculator.

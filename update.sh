@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
 
-echo "Happy Hour AI — Rebuild"
+echo "Happy Hour Cocktails AI — Rebuild"
 echo "======================="
 
 docker compose up --build -d

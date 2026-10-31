@@ -1,4 +1,4 @@
-# Happy Hour AI 🍸
+# Happy Hour Cocktails AI 🍸
 
 An AI-assisted planning system for cocktail events — from understanding the event and choosing a menu to quantities, preparation, purchasing and cost comparison.
 
@@ -10,7 +10,7 @@ No installation is required to try the live demo. The local setup below is inten
 
 Planning a cocktail event usually means moving between recipes, spreadsheets, supplier websites and manual calculations.
 
-Happy Hour AI brings that workflow into one system:
+Happy Hour Cocktails AI brings that workflow into one system:
 
 - Define the event, guests, budget and preferences
 - Get AI-assisted cocktail recommendations
@@ -69,12 +69,32 @@ This keeps the numerical output reproducible and prevents AI hallucinations from
 ### AI
 - Groq / OpenAI-compatible LLM integration
 - Tool-calling agent connected to deterministic backend functions
-- Public demo AI usage is rate-limited
+- AI usage is limited per user per day, enforced in the database
 
 ### Deployment
 - Frontend: Vercel
 - API: Render
 - Database: Neon
+
+## Accounts, workspaces and privacy
+
+Every user signs up with email and password and automatically gets a private
+**personal workspace**. Events — menus, quantities, shopping lists, purchase
+plans, prep sheets, equipment, AI conversations — belong to a workspace and are
+visible only to its members. The cocktail, ingredient, product and supplier
+catalogue is shared by everyone.
+
+- Isolation is enforced by the API, not the frontend. Every `/api/events/{event_id}/…`
+  route depends on one ownership check (`app/core/auth.py → require_event_access`),
+  and an event outside your workspace answers `404`, exactly like one that does not exist.
+- Workspaces are `companies` rows reached through `company_memberships`, so several
+  people can later share one company workspace without changing how events are scoped.
+- Only platform admins can edit the shared catalogue (mappings and prices):
+  `python scripts/set_admin.py --email you@example.com`.
+- AI calls (event builder coach, event assistant) are limited per user per UTC day
+  (`AI_DAILY_REQUEST_LIMIT`, default 10) with a global daily ceiling
+  (`AI_GLOBAL_DAILY_REQUEST_LIMIT`). Counters live in PostgreSQL, so the limits hold
+  across restarts and multiple API instances. Browsing and calculations never use AI quota.
 
 ## Public dataset
 
@@ -178,11 +198,16 @@ The public database is rebuilt from:
 
 ## Testing
 
-Backend:
+Backend (engine tests plus API-level auth, tenant-isolation and AI-quota tests):
 
     cd backend
     source venv/bin/activate
     pytest -q
+
+The API tests use a throw-away SQLite database by default. To run them against
+PostgreSQL, point `TEST_DATABASE_URL` at a **disposable** database (it is wiped):
+
+    TEST_DATABASE_URL=postgresql+asyncpg://happyhour:happyhour@localhost:5432/happyhour_test pytest -q
 
 Frontend production build:
 
@@ -203,7 +228,7 @@ https://happy-hour-ai.onrender.com/api/health
 
 > AI should help make decisions — not invent the numbers.
 
-Happy Hour AI uses AI where language and recommendations are useful, while keeping quantities, pricing and purchasing logic deterministic.
+Happy Hour Cocktails AI uses AI where language and recommendations are useful, while keeping quantities, pricing and purchasing logic deterministic.
 
 ## License
 

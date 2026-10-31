@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
 
-echo "Happy Hour AI — Reset"
+echo "Happy Hour Cocktails AI — Reset"
 echo "====================="
 echo
 echo "This removes the Docker database volume and rebuilds"

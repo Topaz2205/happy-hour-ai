@@ -24,7 +24,7 @@ export default function AgentActivity({
   steps = PLAN_STEPS,
   activeIndex,
   done = false,
-  title = "Happy Hour AI",
+  title = "Happy Hour Cocktails AI",
   className,
 }: {
   steps?: string[];

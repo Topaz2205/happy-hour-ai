@@ -16,7 +16,7 @@ export default function Nav() {
     <nav className="bg-amber-900 text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-14">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-          🍹 Happy Hour AI
+          🍹 Happy Hour Cocktails AI
         </Link>
         <div className="flex gap-4">
           {links.map((l) => (

@@ -7,5 +7,5 @@ alembic upgrade head
 echo "▶ Loading public dataset..."
 python scripts/seed_public.py
 
-echo "▶ Starting Happy Hour AI API..."
+echo "▶ Starting Happy Hour Cocktails AI API..."
 exec uvicorn app.main:app --host 0.0.0.0 --port 8000

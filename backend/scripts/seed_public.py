@@ -1,5 +1,5 @@
 """
-Load the public Happy Hour AI dataset into an empty PostgreSQL database.
+Load the public Happy Hour Cocktails AI dataset into an empty PostgreSQL database.
 
 The public dataset contains:
 - classic cocktail recipes
@@ -120,7 +120,7 @@ async def seed():
 
     validate_seed(data)
 
-    print("Happy Hour AI — Public Seed")
+    print("Happy Hour Cocktails AI — Public Seed")
     print("===========================")
     print(f"Source: {SEED_FILE}")
     print()

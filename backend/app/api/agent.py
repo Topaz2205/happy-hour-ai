@@ -7,15 +7,16 @@ Claude's job: understand intent, pick cocktails, set allocations, interpret resu
 """
 import json
 import uuid
-from typing import Any
+from typing import Any, Literal
 from fastapi import APIRouter, Depends, HTTPException, Request
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 from sqlalchemy.orm import selectinload
 
 from app.core.config import settings
-from app.services.ai_rate_limit import enforce_ai_rate_limit
+from app.core.auth import AuthContext, EventAccess, get_auth_context, get_event_for_context
+from app.services import usage
 from app.services.llm import (
     build_provider, describe_config, LLMError, Message, ToolCall,
 )
@@ -33,18 +34,22 @@ router = APIRouter()
 # ── Agent request/response ────────────────────────────────────────────────────
 
 class ChatMessage(BaseModel):
-    role: str  # "user" or "assistant"
-    content: str
+    # Only conversational turns. "system"/"tool" turns come from the server,
+    # never from the client.
+    role: Literal["user", "assistant"]
+    content: str = Field(..., min_length=1, max_length=4000)
 
 
 class AgentChatRequest(BaseModel):
     event_id: str
-    messages: list[ChatMessage]
+    # Bounded so one request cannot carry an arbitrarily large (and expensive)
+    # prompt. The UI sends the visible conversation, well under this.
+    messages: list[ChatMessage] = Field(..., min_length=1, max_length=30)
     # Which workspace tab the person is looking at. "Make it cheaper" means
     # something different from Shopping than it does from Menu, and the tab is
     # the cheapest possible way to carry that — a single word, rather than the
     # frontend shipping data the backend can already read.
-    current_tab: str | None = None
+    current_tab: str | None = Field(None, max_length=24)
 
 
 # ── Tool definitions (Claude function calling) ────────────────────────────────
@@ -592,7 +597,8 @@ async def tool_list_spirit_options(inputs: dict, event: Event, db: AsyncSession)
     }
 
 
-async def tool_apply_product_alternative(inputs: dict, event: Event, db: AsyncSession) -> dict:
+async def tool_apply_product_alternative(inputs: dict, event: Event, db: AsyncSession,
+                                         access: EventAccess) -> dict:
     """
     Apply a product choice to this event, then recalculate.
 
@@ -603,11 +609,15 @@ async def tool_apply_product_alternative(inputs: dict, event: Event, db: AsyncSe
     """
     from app.api.events import set_event_product, ProductOverrideIn
 
+    # `event` was loaded through the caller's workspace (agent_chat), and
+    # `access` is the proof of that — the model cannot name another event: no
+    # tool takes an event id.
     result = await set_event_product(
         str(event.id), inputs["ingredient_id"],
         ProductOverrideIn(product_id=inputs["product_id"],
                           reason=inputs.get("reason") or "Applied by the agent"),
         db,
+        access=access,
     )
     return {
         "applied": True,
@@ -625,6 +635,7 @@ async def dispatch_tool(
     tool_input: dict,
     event: Event,
     db: AsyncSession,
+    access: EventAccess | None = None,
 ) -> Any:
     """
     Run one tool and always return something the model can read.
@@ -640,7 +651,10 @@ async def dispatch_tool(
     later query on this session with a broken transaction.
     """
     try:
-        return await _dispatch(tool_name, tool_input, event, db)
+        if access is None or access.event_id != event.id:
+            # Tools only ever act on the event the request was authorised for.
+            return {"error": "Event not found", "tool": tool_name}
+        return await _dispatch(tool_name, tool_input, event, db, access)
     except Exception as e:
         await db.rollback()
         return {
@@ -656,6 +670,7 @@ async def _dispatch(
     tool_input: dict,
     event: Event,
     db: AsyncSession,
+    access: EventAccess,
 ) -> Any:
     if tool_name == "search_cocktails":
         return await tool_search_cocktails(tool_input, db)
@@ -668,7 +683,7 @@ async def _dispatch(
     elif tool_name == "calculate_event_cost":
         return await tool_calculate_event(tool_input, event, db)
     elif tool_name == "apply_product_alternative":
-        return await tool_apply_product_alternative(tool_input, event, db)
+        return await tool_apply_product_alternative(tool_input, event, db, access)
     elif tool_name == "list_spirit_options":
         return await tool_list_spirit_options(tool_input, event, db)
     elif tool_name == "get_shopping_list":
@@ -680,7 +695,7 @@ async def _dispatch(
 # ── System prompt ─────────────────────────────────────────────────────────────
 
 SYSTEM_PROMPT = """
-Happy Hour AI — cocktail event planner for Israeli HR teams, office managers, People Ops.
+Happy Hour Cocktails AI — cocktail event planner for Israeli HR teams, office managers, People Ops.
 Tone: professional, warm, knows cocktails. Israeli context (₪, Hebrew supplier names).
 
 Tools (none need an event id — you are already working on one specific event):
@@ -833,6 +848,7 @@ async def agent_chat(
     body: AgentChatRequest,
     request: Request,
     db: AsyncSession = Depends(get_db),
+    ctx: AuthContext = Depends(get_auth_context),
 ):
     """
     Agentic chat. The model orchestrates; the Python engine does all the maths.
@@ -841,7 +857,11 @@ async def agent_chat(
     affect any number produced here: every quantity and price still comes from
     app/engine/calculator.py through the tools below.
     """
-    enforce_ai_rate_limit(request)
+    # Ownership first: 404 for anything outside the caller's workspace, and
+    # before any AI quota is spent.
+    event = await get_event_for_context(db, ctx, body.event_id)
+    uid = event.id
+    access = EventAccess(event_id=uid, ctx=ctx)
 
     problem = describe_config(
         settings.LLM_PROVIDER, settings.resolved_llm_key, settings.resolved_llm_model
@@ -850,15 +870,6 @@ async def agent_chat(
         # 503, not 500: the service is fine, it just isn't configured yet.
         raise HTTPException(status_code=503, detail=problem)
 
-    try:
-        uid = uuid.UUID(body.event_id)
-    except ValueError:
-        raise HTTPException(status_code=400, detail="Invalid event ID")
-
-    result = await db.execute(select(Event).where(Event.id == uid))
-    event = result.scalar_one_or_none()
-    if event is None:
-        raise HTTPException(status_code=404, detail="Event not found")
 
     try:
         llm = build_provider(
@@ -873,6 +884,10 @@ async def agent_chat(
     messages = [Message(role=m.role, content=m.content) for m in body.messages]
     system = await build_system_prompt(event, db, body.current_tab)
 
+    # One chat turn = one unit of the daily AI quota, however many tool rounds
+    # it takes. Counted before the provider is called; refunded if it fails.
+    ticket = await usage.consume_ai_request(ctx.user_id)
+
     MAX_ITERATIONS = 4
     final_text = ""
     iteration = 0
@@ -882,6 +897,8 @@ async def agent_chat(
             reply = await llm.chat(
                 system=system, messages=trim_history(messages), tools=TOOLS)
         except LLMError as e:
+            if iteration == 0:
+                await usage.refund(ticket)
             raise HTTPException(status_code=e.status, detail=e.message)
 
         messages.append(Message(
@@ -893,15 +910,14 @@ async def agent_chat(
             break
 
         for tc in reply.tool_calls:
-            output = await dispatch_tool(tc.name, tc.arguments, event, db)
+            output = await dispatch_tool(tc.name, tc.arguments, event, db, access)
             messages.append(Message(
                 role="tool", tool_call_id=tc.id, content=json.dumps(output),
             ))
 
         # The tools write to the event, so persist before the next turn reads it.
         await db.commit()
-        refreshed = await db.execute(select(Event).where(Event.id == uid))
-        event = refreshed.scalar_one_or_none()
+        event = await get_event_for_context(db, ctx, uid)
 
         # Some models keep calling tools and never write a closing message. Keep
         # the last text they did produce rather than returning an empty reply.
@@ -938,4 +954,6 @@ async def agent_chat(
         "iterations": iteration + 1,
         "provider": settings.LLM_PROVIDER,
         "model": settings.resolved_llm_model,
+        "ai_usage": {"used": ticket.used, "limit": ticket.limit,
+                     "remaining": max(0, ticket.limit - ticket.used)},
     }

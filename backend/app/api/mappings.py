@@ -12,6 +12,8 @@ created here is a deliberate, attributed choice — nothing is inferred.
 import uuid
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
+
+from app.core.auth import require_admin
 from pydantic import BaseModel, Field
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func, distinct
@@ -219,7 +221,7 @@ async def list_candidates(ingredient_id: str, db: AsyncSession = Depends(get_db)
     }
 
 
-@router.post("", status_code=201)
+@router.post("", status_code=201, dependencies=[Depends(require_admin)])
 async def create_mapping(body: CreateMappingRequest, db: AsyncSession = Depends(get_db)):
     """Map an ingredient to a product. Explicit, human-approved substitution."""
     try:
@@ -285,7 +287,7 @@ async def create_mapping(body: CreateMappingRequest, db: AsyncSession = Depends(
     }
 
 
-@router.delete("/{mapping_id}", status_code=200)
+@router.delete("/{mapping_id}", status_code=200, dependencies=[Depends(require_admin)])
 async def delete_mapping(mapping_id: str, db: AsyncSession = Depends(get_db)):
     """Remove a mapping. The ingredient returns to PRODUCT_MAPPING_REQUIRED."""
     try:
@@ -305,7 +307,7 @@ async def delete_mapping(mapping_id: str, db: AsyncSession = Depends(get_db)):
     return {"status": "deleted", "mapping_id": mapping_id}
 
 
-@router.post("/price", status_code=201)
+@router.post("/price", status_code=201, dependencies=[Depends(require_admin)])
 async def add_price(body: CreatePriceRequest, db: AsyncSession = Depends(get_db)):
     """
     Attach a current price to a product that has none.

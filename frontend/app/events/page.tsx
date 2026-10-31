@@ -28,7 +28,7 @@ export default function EventsPage() {
           <EmptyState
             icon={CalendarDays}
             title="No events yet."
-            body="Tell Happy Hour AI what you're planning and we'll build it with you."
+            body="Tell Happy Hour Cocktails AI what you're planning and we'll build it with you."
           />
         </Card>
       ) : (

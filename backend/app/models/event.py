@@ -10,7 +10,15 @@ class Event(Base, TimestampMixin):
     __tablename__ = "events"
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    company_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), ForeignKey("companies.id"))
+    # The owning workspace (tenant). Every event created through the API gets
+    # the caller's workspace here; the column is nullable only so legacy rows
+    # created before workspaces existed survive the migration — such rows are
+    # unreachable until assigned. Never taken from client input.
+    company_id: Mapped[uuid.UUID | None] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("companies.id"), index=True)
+    # Display-only: the client/company the event is for, as typed in the form.
+    # Has no bearing on ownership.
+    client_company_name: Mapped[str | None] = mapped_column(String(255))
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     event_date: Mapped[date | None] = mapped_column(Date)
     location: Mapped[str | None] = mapped_column(String(255))

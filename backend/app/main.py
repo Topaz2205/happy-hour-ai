@@ -1,32 +1,39 @@
 """
-Happy Hour AI — FastAPI Application
+Happy Hour Cocktails AI — FastAPI Application
 """
 import logging
 import traceback
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, Request
+from fastapi import Depends, FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.db.base import Base
 from app.db.session import engine
 from app.core.config import settings
-from app.api import cocktails, events, suppliers, agent, mappings, plan, event_builder
+from app.api import cocktails, events, suppliers, agent, mappings, plan, event_builder, auth
+from app.core.auth import get_auth_context
+from app.core.security import validate_security_settings
 
 log = logging.getLogger("happyhour")
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Create all tables on startup (idempotent)
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    # Fail at boot, not at first sign-in, if production is missing its secret.
+    validate_security_settings()
+    # The schema is owned by Alembic (`alembic upgrade head`, run by
+    # docker-entrypoint.sh). create_all is opt-in for throwaway local databases
+    # only: it can create a table that a later migration then fails to create.
+    if settings.AUTO_CREATE_TABLES:
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
     yield
     await engine.dispose()
 
 
 app = FastAPI(
-    title="Happy Hour AI",
+    title="Happy Hour Cocktails AI",
     description="AI-powered cocktail event planning & procurement for HR teams",
     version="1.0.0",
     lifespan=lifespan,
@@ -54,22 +61,30 @@ async def unhandled_exception_handler(request: Request, exc: Exception):
     """
     log.error("Unhandled error on %s %s\n%s",
               request.method, request.url.path, traceback.format_exc())
+    # Exception text can contain SQL, ids or provider messages; only show it
+    # outside production.
+    detail = ("Something went wrong on our side. Please try again."
+              if settings.is_production else f"{type(exc).__name__}: {exc}")
     return JSONResponse(
         status_code=500,
-        content={
-            "detail": f"{type(exc).__name__}: {exc}",
-            "hint": "See the API terminal for the full traceback.",
-        },
+        content={"detail": detail, "hint": "See the API logs for the full traceback."},
     )
 
 
-app.include_router(cocktails.router, prefix="/api/cocktails", tags=["Cocktails"])
-app.include_router(events.router, prefix="/api/events", tags=["Events"])
-app.include_router(suppliers.router, prefix="/api/suppliers", tags=["Suppliers"])
-app.include_router(agent.router, prefix="/api/agent", tags=["AI Agent"])
-app.include_router(mappings.router, prefix="/api/mappings", tags=["Ingredient Mapping"])
-app.include_router(plan.router, prefix="/api/plan", tags=["Planning"])
-app.include_router(event_builder.router, prefix="/api/event-builder", tags=["Event Builder"])
+# Public: sign-up / sign-in, and the health check below.
+app.include_router(auth.router, prefix="/api/auth", tags=["Auth"])
+
+# Everything else requires a signed-in user with a workspace. Event routes
+# additionally check ownership per event (app/core/auth.py: require_event_access);
+# catalogue writes additionally require a platform admin (see mappings.py).
+_signed_in = [Depends(get_auth_context)]
+app.include_router(cocktails.router, prefix="/api/cocktails", tags=["Cocktails"], dependencies=_signed_in)
+app.include_router(events.router, prefix="/api/events", tags=["Events"], dependencies=_signed_in)
+app.include_router(suppliers.router, prefix="/api/suppliers", tags=["Suppliers"], dependencies=_signed_in)
+app.include_router(agent.router, prefix="/api/agent", tags=["AI Agent"], dependencies=_signed_in)
+app.include_router(mappings.router, prefix="/api/mappings", tags=["Ingredient Mapping"], dependencies=_signed_in)
+app.include_router(plan.router, prefix="/api/plan", tags=["Planning"], dependencies=_signed_in)
+app.include_router(event_builder.router, prefix="/api/event-builder", tags=["Event Builder"], dependencies=_signed_in)
 
 
 @app.get("/api/health")

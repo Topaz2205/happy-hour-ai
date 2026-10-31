@@ -3,7 +3,9 @@ from typing import Optional
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    # extra="ignore": backend/.env is copied from the shared .env.example, which
+    # also carries frontend-only keys such as NEXT_PUBLIC_API_URL.
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     # Database
     DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/happyhour"
@@ -55,10 +57,42 @@ class Settings(BaseSettings):
     # CORS
     CORS_ORIGINS: list[str] = ["http://localhost:3000", "http://localhost:3001"]
 
+    # ── Environment ───────────────────────────────────────────────────────
+    # "production" makes missing security settings a startup error instead of
+    # a warning. Set ENVIRONMENT=production on the hosted API.
+    ENVIRONMENT: str = "development"
+
+    # ── Authentication ────────────────────────────────────────────────────
+    # Signs access tokens. Must be a long random value in production and must
+    # be the same on every API instance. Generate one with:
+    #   python -c "import secrets; print(secrets.token_urlsafe(48))"
+    AUTH_SECRET_KEY: str = ""
+    AUTH_TOKEN_TTL_HOURS: int = 24 * 7
+    # Set to false to close sign-ups without taking the app down.
+    ALLOW_SIGNUP: bool = True
+    SIGNUP_DAILY_LIMIT_PER_IP: int = 20
+    LOGIN_FAILURES_PER_HOUR: int = 10
+
+    # ── Paid AI usage protection (stored in the database, per UTC day) ─────
+    # Per user. Only calls that actually reach the LLM count; browsing,
+    # calculations and shopping lists never do.
+    AI_DAILY_REQUEST_LIMIT: int = 10
+    # Across all users — a hard ceiling on the day's AI spend. 0 disables it.
+    AI_GLOBAL_DAILY_REQUEST_LIMIT: int = 300
+
+    # Schema is owned by Alembic. create_all at startup can create a table that
+    # a later migration then fails to create, so it is opt-in for local hacking.
+    AUTO_CREATE_TABLES: bool = False
+
     # App
-    APP_NAME: str = "Happy Hour AI"
+    APP_NAME: str = "Happy Hour Cocktails AI"
     APP_VERSION: str = "0.1.0"
     DEBUG: bool = False
+
+
+    @property
+    def is_production(self) -> bool:
+        return self.ENVIRONMENT.lower() in {"production", "prod"}
 
 
 settings = Settings()

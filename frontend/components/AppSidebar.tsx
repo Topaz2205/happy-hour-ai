@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   Sparkles, CalendarDays, GlassWater, Store, Link2, Settings,
-  Menu as MenuIcon, X, PanelLeftClose, PanelLeft,
+  Menu as MenuIcon, X, PanelLeftClose, PanelLeft, LogOut,
 } from "lucide-react";
 import { cx } from "./ui";
+import { useSession } from "./AuthGate";
 
 const NAV = [
   { href: "/", label: "Home", icon: Sparkles, exact: true },
@@ -74,7 +75,7 @@ export default function AppSidebar() {
       <div className="md:hidden sticky top-0 z-40 flex items-center justify-between h-13 px-3 py-2.5 bg-canvas/90 backdrop-blur border-b border-line">
         <Link href="/" className="flex items-center gap-2">
           <Logo />
-          <span className="text-[14px] font-semibold tracking-[-.01em]">Happy Hour AI</span>
+          <span className="text-[14px] font-semibold tracking-[-.01em]">Happy Hour Cocktails AI</span>
         </Link>
         <button
           onClick={() => setMobileOpen(true)}
@@ -96,7 +97,7 @@ export default function AppSidebar() {
             <div className="flex items-center justify-between px-4 pb-3">
               <div className="flex items-center gap-2">
                 <Logo />
-                <span className="text-[14px] font-semibold">Happy Hour AI</span>
+                <span className="text-[13.5px] font-semibold leading-[1.15]">Happy Hour<br />Cocktails AI</span>
               </div>
               <button
                 onClick={() => setMobileOpen(false)}
@@ -107,7 +108,8 @@ export default function AppSidebar() {
               </button>
             </div>
             <NavLinks collapsed={false} onNavigate={() => setMobileOpen(false)} />
-            <div className="mt-auto px-2">
+            <div className="mt-auto px-2 flex flex-col gap-[2px]">
+              <AccountBlock collapsed={false} />
               <SettingsLink collapsed={false} />
             </div>
           </aside>
@@ -123,11 +125,13 @@ export default function AppSidebar() {
         )}
       >
         <div className={cx("flex items-center h-14 shrink-0", collapsed ? "justify-center px-0" : "px-4")}>
-          <Link href="/" className="flex items-center gap-2 min-w-0" title="Happy Hour AI">
+          <Link href="/" className="flex items-center gap-2 min-w-0" title="Happy Hour Cocktails AI">
             <Logo />
             {!collapsed && (
-              <span className="text-[14px] font-semibold tracking-[-.012em] truncate">
-                Happy Hour AI
+              // Two short lines rather than a truncated one: the full name is
+              // too long for the 200px rail on a single line.
+              <span className="text-[13.5px] font-semibold tracking-[-.012em] leading-[1.15]">
+                Happy Hour<br />Cocktails AI
               </span>
             )}
           </Link>
@@ -136,6 +140,7 @@ export default function AppSidebar() {
         <NavLinks collapsed={collapsed} />
 
         <div className="mt-auto px-2 pb-3 pt-2 flex flex-col gap-[2px] border-t border-line mx-2 mb-0">
+          <AccountBlock collapsed={collapsed} />
           <SettingsLink collapsed={collapsed} />
           <button
             onClick={() => setCollapsed((c) => !c)}
@@ -152,6 +157,40 @@ export default function AppSidebar() {
         </div>
       </aside>
     </>
+  );
+}
+
+/** Who is signed in, which workspace they are in, AI left today, sign out. */
+function AccountBlock({ collapsed }: { collapsed: boolean }) {
+  const { session, signOut } = useSession();
+  if (!session) return null;
+  const { user, workspace, ai_usage } = session;
+  return (
+    <div className="flex flex-col gap-[2px]">
+      {!collapsed && (
+        <div className="px-2.5 py-2 rounded-[8px] bg-sunk/60">
+          <div className="text-[12.5px] font-medium text-ink truncate" title={workspace.name}>
+            {workspace.name}
+          </div>
+          <div className="text-[11.5px] text-ink-3 truncate" title={user.email}>{user.email}</div>
+          <div className="mt-1 text-[11px] text-ink-4">
+            AI today: {ai_usage.remaining} of {ai_usage.limit} left
+          </div>
+        </div>
+      )}
+      <button
+        onClick={signOut}
+        title={collapsed ? "Sign out" : undefined}
+        className={cx(
+          "flex items-center gap-2.5 h-[34px] rounded-[8px] text-[13px] text-ink-2",
+          "hover:text-ink hover:bg-sunk transition-colors",
+          collapsed ? "justify-center" : "px-2.5"
+        )}
+      >
+        <LogOut size={15.5} strokeWidth={1.75} className="text-ink-4" />
+        {!collapsed && <span>Sign out</span>}
+      </button>
+    </div>
   );
 }
 
